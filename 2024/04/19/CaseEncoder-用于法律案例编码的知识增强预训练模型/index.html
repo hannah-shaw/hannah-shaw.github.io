@@ -1,0 +1,562 @@
+
+<!DOCTYPE html><html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0" theme-name="Stellar" theme-version="1.27.0">
+  
+  <meta name="generator" content="Hexo 7.2.0">
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f9fafb">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
+  
+  <title>CaseEncoder_用于法律案例编码的知识增强预训练模型 - Hannah_Shaw</title>
+
+  
+    <meta name="description" content="CaseEncoder：用于法律案例编码的知识增强预训练模型Type: Academic JournalPublisher: EMNLP 2023Link: https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;2305.05393 摘要法律案件检索是现代法律信息系统的一个关键过程。虽然最近的研究利用基于通用领域自监督预训练范式的预训练语言模型(PLM) 来构建法律案例检索模型，但使用通用领域 PLM作为骨">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CaseEncoder_用于法律案例编码的知识增强预训练模型">
+<meta property="og:url" content="http://example.com/2024/04/19/CaseEncoder-%E7%94%A8%E4%BA%8E%E6%B3%95%E5%BE%8B%E6%A1%88%E4%BE%8B%E7%BC%96%E7%A0%81%E7%9A%84%E7%9F%A5%E8%AF%86%E5%A2%9E%E5%BC%BA%E9%A2%84%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B/index.html">
+<meta property="og:site_name" content="Hannah_Shaw">
+<meta property="og:description" content="CaseEncoder：用于法律案例编码的知识增强预训练模型Type: Academic JournalPublisher: EMNLP 2023Link: https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;2305.05393 摘要法律案件检索是现代法律信息系统的一个关键过程。虽然最近的研究利用基于通用领域自监督预训练范式的预训练语言模型(PLM) 来构建法律案例检索模型，但使用通用领域 PLM作为骨">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/CaseEncoder%EF%BC%9A%E7%94%A8%E4%BA%8E%E6%B3%95%E5%BE%8B%E6%A1%88%E4%BE%8B%E7%BC%96%E7%A0%81%E7%9A%84%E7%9F%A5%E8%AF%86%E5%A2%9E%E5%BC%BA%E9%A2%84%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B%203456bfbfec104e9fb5e8223a7e20763c/Untitled.png">
+<meta property="og:image" content="http://example.com/CaseEncoder%EF%BC%9A%E7%94%A8%E4%BA%8E%E6%B3%95%E5%BE%8B%E6%A1%88%E4%BE%8B%E7%BC%96%E7%A0%81%E7%9A%84%E7%9F%A5%E8%AF%86%E5%A2%9E%E5%BC%BA%E9%A2%84%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B%203456bfbfec104e9fb5e8223a7e20763c/Untitled%201.png">
+<meta property="og:image" content="http://example.com/CaseEncoder%EF%BC%9A%E7%94%A8%E4%BA%8E%E6%B3%95%E5%BE%8B%E6%A1%88%E4%BE%8B%E7%BC%96%E7%A0%81%E7%9A%84%E7%9F%A5%E8%AF%86%E5%A2%9E%E5%BC%BA%E9%A2%84%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B%203456bfbfec104e9fb5e8223a7e20763c/Untitled%202.png">
+<meta property="og:image" content="http://example.com/CaseEncoder%EF%BC%9A%E7%94%A8%E4%BA%8E%E6%B3%95%E5%BE%8B%E6%A1%88%E4%BE%8B%E7%BC%96%E7%A0%81%E7%9A%84%E7%9F%A5%E8%AF%86%E5%A2%9E%E5%BC%BA%E9%A2%84%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B%203456bfbfec104e9fb5e8223a7e20763c/Untitled%203.png">
+<meta property="og:image" content="http://example.com/CaseEncoder%EF%BC%9A%E7%94%A8%E4%BA%8E%E6%B3%95%E5%BE%8B%E6%A1%88%E4%BE%8B%E7%BC%96%E7%A0%81%E7%9A%84%E7%9F%A5%E8%AF%86%E5%A2%9E%E5%BC%BA%E9%A2%84%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B%203456bfbfec104e9fb5e8223a7e20763c/Untitled%204.png">
+<meta property="og:image" content="http://example.com/CaseEncoder%EF%BC%9A%E7%94%A8%E4%BA%8E%E6%B3%95%E5%BE%8B%E6%A1%88%E4%BE%8B%E7%BC%96%E7%A0%81%E7%9A%84%E7%9F%A5%E8%AF%86%E5%A2%9E%E5%BC%BA%E9%A2%84%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B%203456bfbfec104e9fb5e8223a7e20763c/Untitled%205.png">
+<meta property="og:image" content="http://example.com/CaseEncoder%EF%BC%9A%E7%94%A8%E4%BA%8E%E6%B3%95%E5%BE%8B%E6%A1%88%E4%BE%8B%E7%BC%96%E7%A0%81%E7%9A%84%E7%9F%A5%E8%AF%86%E5%A2%9E%E5%BC%BA%E9%A2%84%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B%203456bfbfec104e9fb5e8223a7e20763c/Untitled%206.png">
+<meta property="og:image" content="http://example.com/CaseEncoder%EF%BC%9A%E7%94%A8%E4%BA%8E%E6%B3%95%E5%BE%8B%E6%A1%88%E4%BE%8B%E7%BC%96%E7%A0%81%E7%9A%84%E7%9F%A5%E8%AF%86%E5%A2%9E%E5%BC%BA%E9%A2%84%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B%203456bfbfec104e9fb5e8223a7e20763c/Untitled%207.png">
+<meta property="og:image" content="http://example.com/CaseEncoder%EF%BC%9A%E7%94%A8%E4%BA%8E%E6%B3%95%E5%BE%8B%E6%A1%88%E4%BE%8B%E7%BC%96%E7%A0%81%E7%9A%84%E7%9F%A5%E8%AF%86%E5%A2%9E%E5%BC%BA%E9%A2%84%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B%203456bfbfec104e9fb5e8223a7e20763c/Untitled%208.png">
+<meta property="og:image" content="http://example.com/CaseEncoder%EF%BC%9A%E7%94%A8%E4%BA%8E%E6%B3%95%E5%BE%8B%E6%A1%88%E4%BE%8B%E7%BC%96%E7%A0%81%E7%9A%84%E7%9F%A5%E8%AF%86%E5%A2%9E%E5%BC%BA%E9%A2%84%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B%203456bfbfec104e9fb5e8223a7e20763c/Untitled%209.png">
+<meta property="og:image" content="http://example.com/CaseEncoder%EF%BC%9A%E7%94%A8%E4%BA%8E%E6%B3%95%E5%BE%8B%E6%A1%88%E4%BE%8B%E7%BC%96%E7%A0%81%E7%9A%84%E7%9F%A5%E8%AF%86%E5%A2%9E%E5%BC%BA%E9%A2%84%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B%203456bfbfec104e9fb5e8223a7e20763c/Untitled%2010.png">
+<meta property="article:published_time" content="2024-04-18T18:23:35.000Z">
+<meta property="article:modified_time" content="2024-04-18T18:25:53.528Z">
+<meta property="article:author" content="Hannah">
+<meta property="article:tag" content="papers">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/CaseEncoder%EF%BC%9A%E7%94%A8%E4%BA%8E%E6%B3%95%E5%BE%8B%E6%A1%88%E4%BE%8B%E7%BC%96%E7%A0%81%E7%9A%84%E7%9F%A5%E8%AF%86%E5%A2%9E%E5%BC%BA%E9%A2%84%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B%203456bfbfec104e9fb5e8223a7e20763c/Untitled.png">
+  
+  
+  
+  <meta name="keywords" content="papers">
+
+  <!-- feed -->
+  
+
+  <link rel="stylesheet" href="/css/main.css?v=1.27.0">
+
+  
+
+  
+
+  
+</head>
+<body>
+
+<div class="l_body s:aa content tech" id="start" layout="post" ><aside class="l_left"><div class="leftbar-container">
+
+
+<header class="header"><div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="https://pic.aigexing.net/uploads/9/1253/1608374577/93536629702/28776239.jpg" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></a><a class="title" href="/"><div class="main" ff="title">Hannah_Shaw</div></a></div></header>
+
+<div class="nav-area">
+<div class="search-wrapper" id="search-wrapper"><form class="search-form"><a class="search-button" onclick="document.getElementById(&quot;search-input&quot;).focus();"><svg t="1705074644177" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1560" width="200" height="200"><path d="M1008.839137 935.96571L792.364903 719.491476a56.783488 56.783488 0 0 0-80.152866 0 358.53545 358.53545 0 1 1 100.857314-335.166073 362.840335 362.840335 0 0 1-3.689902 170.145468 51.248635 51.248635 0 1 0 99.217358 26.444296 462.057693 462.057693 0 1 0-158.255785 242.303546l185.930047 185.725053a51.248635 51.248635 0 0 0 72.568068 0 51.248635 51.248635 0 0 0 0-72.978056z" p-id="1561"></path><path d="M616.479587 615.969233a50.428657 50.428657 0 0 0-61.498362-5.534852 174.655348 174.655348 0 0 1-177.525271 3.484907 49.403684 49.403684 0 0 0-58.833433 6.76482l-3.074918 2.869923a49.403684 49.403684 0 0 0 8.609771 78.10292 277.767601 277.767601 0 0 0 286.992355-5.739847 49.403684 49.403684 0 0 0 8.404776-76.667958z" p-id="1562"></path></svg></a><input type="text" class="search-input" id="search-input" placeholder="Search"></form><div id="search-result"></div><div class="search-no-result">No Results!</div></div>
+
+
+<nav class="menu dis-select"></nav>
+</div>
+<div class="widgets">
+
+
+<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">Recent Update</span></div><div class="widget-body fs14"><a class="item title" href="/2024/04/19/SAILER%EF%BC%9A%E9%9D%A2%E5%90%91%E6%B3%95%E5%BE%8B%E6%A1%88%E4%BE%8B%E6%A3%80%E7%B4%A2%E7%9A%84%E7%BB%93%E6%9E%84%E6%84%9F%E7%9F%A5%E9%A2%84%E8%AE%AD%E7%BB%83%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B/"><span class="title">SAILER：面向法律案例检索的结构感知预训练语言模型</span></a><a class="item title" href="/2024/04/19/CaseEncoder-%E7%94%A8%E4%BA%8E%E6%B3%95%E5%BE%8B%E6%A1%88%E4%BE%8B%E7%BC%96%E7%A0%81%E7%9A%84%E7%9F%A5%E8%AF%86%E5%A2%9E%E5%BC%BA%E9%A2%84%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B/"><span class="title">CaseEncoder_用于法律案例编码的知识增强预训练模型</span></a><a class="item title" href="/2024/04/19/%E5%80%A6%E6%80%A0%E7%A4%BE%E4%BC%9A/"><span class="title">倦怠社会</span></a><a class="item title" href="/2024/04/19/Monash-IT-FIT5037/"><span class="title">Monash IT FIT5037</span></a></div></widget>
+</div>
+
+</div></aside><div class="l_main" id="main">
+
+
+
+
+
+<div class="article banner top">
+  <div class="content">
+    <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">Home</a>
+<span class="sep"></span><a class="cap breadcrumb" href="/">Blog</a></div>
+<div class="flex-row" id="post-meta"><span class="text created">Posted on: <time datetime="2024-04-18T18:23:35.000Z">2024-04-19</time></span><span class="sep updated"></span><span class="text updated">Updated on: <time datetime="2024-04-18T18:25:53.528Z">2024-04-19</time></span></div></div></div>
+    
+    <div class="bottom only-title">
+      
+      <div class="text-area">
+        <h1 class="text title"><span>CaseEncoder_用于法律案例编码的知识增强预训练模型</span></h1>
+        
+      </div>
+    </div>
+    
+  </div>
+  </div><article class="md-text content"><h1 id="CaseEncoder：用于法律案例编码的知识增强预训练模型"><a href="#CaseEncoder：用于法律案例编码的知识增强预训练模型" class="headerlink" title="CaseEncoder：用于法律案例编码的知识增强预训练模型"></a>CaseEncoder：用于法律案例编码的知识增强预训练模型</h1><p>Type: Academic Journal<br>Publisher: EMNLP 2023<br>Link: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2305.05393">https://arxiv.org/abs/2305.05393</a></p>
+<h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p>法律案件检索是现代法律信息系统的一个关键过程。虽然最近的研究利用基于通用领域自监督预训练范式的预训练语言模型<br>(PLM) 来构建法律案例检索模型，但使用通用领域 PLM<br>作为骨干存在局限性。具体来说，这些模型可能无法完全捕捉法律案件文件中的基本法律特征。为了解决这个问题，我们提出了<br>CaseEncoder，一种法律文档编码器，它在数据采样和预训练阶段利用细粒度的法律知识。在数据采样阶段，我们利用细粒度的法律文章信息来指导正例和负例的选择，从而提高训练数据的质量。在预训练阶段，我们设计了符合相关法律案件的判断标准的法律预训练任务。基于这些任务，我们引入了一种称为<br>Biased Circle Loss<br>的创新损失函数，以增强模型识别细粒度案例相关性的能力。多个基准的实验结果证明<br>CaseEncoder<br>在零样本法律案例检索中显着优于现有的通用预训练模型和特定于法律的预训练模型。<br>CaseEncoder的源代码可以在<a target="_blank" rel="noopener" href="https://github.com/myx666/CaseEncoder%E6%89%BE%E5%88%B0%E3%80%82">https://github.com/myx666/CaseEncoder找到。</a></p>
+<h1 id="1-引言"><a href="#1-引言" class="headerlink" title="1 引言"></a>1 引言</h1><p>法律案例检索是现代法律信息系统的一个关键过程，其目的是找到相关的先例（即先例），为案件的裁判提供重要参考。近年来，预训练语言建模（PLM）技术在通用领域检索任务中取得了巨大成功，这也引发了将PLM应用于法律领域的尝试。例如，钟等人。<br>（2019）和肖等人。 (2021) 分别提出了基于 BERT (Devlin et al., 2018) 和<br>Longformer (Beltagy et al., 2020) 的面向法律的<br>PLM。然而，现有的面向法律的PLM在适应法律领域方面存在局限性，因为它们主要依赖于用法律数据替换通用领域训练数据或扩展输入长度以适应法律文档的长长度特性。葛等人。<br>(2021)<br>以前提-结论对的形式解析法律文章，以训练法律案件的多级网络匹配。巴塔查里亚等人。<br>(2022) 提出了<br>HierSPCNet，它通过引入法律文本信息大大提高了基于网络的相似性。然而，他们仍然采用通用领域<br>PLM 作为其方法的基础。虽然可以解释，但此类模型并不能完全使 PLM<br>理解案例文档中的法律概念，这限制了它们的普遍性和适用性。</p>
+<p>为了解决这个问题，本文提出了<br>CaseEncoder，这是一种利用细粒度法律知识来改进数据采样阶段和预训练阶段的<br>PLM。</p>
+<p>在数据采样阶段，我们将法律文章分割成明确的分支，并在每篇文章中构建内部逻辑关系，用于估计案件之间的相似性权重。这些相似性权重充当伪标签来指导正面和负面案例的选择。通过这种方式，我们提出的数据采样方法提高了采样案例的质量，以进行进一步的预训练。</p>
+<p>在预训练阶段，CaseEncoder采用掩码语言建模（MLM）和细粒度对比学习任务。这些任务旨在匹配法律关联性判断标准中的两个主要概念：关键情况和关键要素（Ma<br>et al.,<br>2021b）。关键情况是指文件中对重大案件的描述，关键要素是对关键情况的法律层面的抽象，更注重与法律条款的一致性。在实践中，MLM任务捕获语义级案例描述，而细粒度对比学习任务采用样本案例及其相关权重来增强模型识别关键元素的能力。基于细粒度对比学习任务的设计，我们提出了一种创新的损失函数Biased<br>Circle<br>Loss，它利用获得的细粒度相关性得分来优化关键元素的识别。将法律文章注释为细粒度的法律知识有两个优点。<br>1）成本效率：无论何种法律制度，法律条款通常都是闭集，文件数量有限，而且法律条款的数量远小于现实中法律案件的数量。因此，注释法律文章比注释法律案例花费的精力要少得多。<br>2）普遍性：文章中的法律知识适用于相应法律制度下的所有案件。值得注意的是，将法律条款注释为细粒度法律知识的思想可以适用于所有成文法体系，甚至适用于普通法体系，因为成文法是普通法最重要的渊源之一。</p>
+<p>多个法律案例检索数据集上的实验结果表明，CaseEncoder的性能明显优于现有的通用预训练模型和专门针对法律的预训练模型。我们还展示了案例文件嵌入的可视化，以展示CaseEncoder在诸如罪名预测和条款预测等下游任务中的潜力。</p>
+<h1 id="2-相关工作"><a href="#2-相关工作" class="headerlink" title="2 相关工作"></a>2 相关工作</h1><p>法律案例检索方法可以分为两类：传统的词袋方法和基于神经网络的方法。在深度神经网络出现之前，TF-IDF+VSM（Salton<br>and Buckley，1988）、BM25（Robertson et al.，1995）和LMIR（Ponte and<br>Croft，1998）是代表性的词袋方法。这些方法有一个共同的特征：它们都将文档视为一系列术语，并通过术语频率或逆文档频率等统计因素来计算文档相似度得分。</p>
+<p>这种方法的一个局限性是它们忽略了术语之间的顺序信息。随着自然语言处理技术的快速发展，将预训练语言模型（PLM）应用于法律案例检索取得了巨大成功。韦斯特曼等人。<br>（2020）；邵等人。 (2020) 通过微调的 BERT 直接检索法律案例 (Devlin et al.,<br>2018)。钟等人。 （2019）和肖等人。 (2021) 使用大型中国法律语料库分别预训练<br>BERT 和 Longformer。除了将原始 PLM<br>应用于法律领域之外，还有一些工作试图将法律知识纳入其提出的模型中。例如，孙等人。<br>(2022) 提出了<br>Law-Match，这是一种与模型无关的因果学习方法，利用法律文章中的知识来解决法律案例匹配。巴拉莱等人。<br>（2023）将检索、处理和信息提取整合到一个管道中，以识别难民案件中的关键信息。他们的模型从难民案例中检索了总共<br>19<br>类物品，然后通过最先进的神经命名实体识别方法进行信息提取。巴塔查亚等人。<br>(2022) 将基于领域知识的文档相似性纳入 PCNet (Minocha et al.,<br>2015)，并提出一种称为 Hier-SPCNet<br>的异构网络，以更好地表示文档相似性。然而，这些基于神经的工作都需要针对特定任务的微调或对齐才能达到相对较好的性能。相比之下，我们提出的方法可以直接应用于零样本设置中的不同下游任务。</p>
+<h1 id="3-任务定义"><a href="#3-任务定义" class="headerlink" title="3 任务定义"></a>3 任务定义</h1><p> 给定一个查询案例 q，该任务旨在从候选列表 L &#x3D; {c1, c2, …, cM }<br>中检索相关案例，其中 M 是 L 的大小，并根据与 q<br>的相关性对它们进行排序。清单中的每个候选案件文件都包含三个主要组成部分： </p>
+<p>1.<br>事实是法院根据被告和原告提供的证据确认的客观事实陈述。这些陈述通常回答诸如案件发生地点、时间和方式等问题。<br>2. 裁定是法官对案件关键论点的意见。它解释了法官决定背后的理由。<br>3、决定书包含对被告人的最终判决，包括罪名、刑罚、涉案条款等。该部分是案件的正式结果。一个法律案件文档的例子如图1所示。在真实的法律案件检索场景中，q通常是一个待判案件。因此，q仅包含案件的事实，而候选案件是具有完整文档的先例，包括标题、元信息、事实、控股、判决和相关法律文章。在本文中，我们主要关注刑法下的案件检索。为了匹配检索模型以前可能从未见过q或其相关案件的真实法律场景，本文中所有模型都以零样本的方式进行评估。</p>
+<p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/CaseEncoder%EF%BC%9A%E7%94%A8%E4%BA%8E%E6%B3%95%E5%BE%8B%E6%A1%88%E4%BE%8B%E7%BC%96%E7%A0%81%E7%9A%84%E7%9F%A5%E8%AF%86%E5%A2%9E%E5%BC%BA%E9%A2%84%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B%203456bfbfec104e9fb5e8223a7e20763c/Untitled.png" alt="Untitled"></p>
+<h1 id="4-方法"><a href="#4-方法" class="headerlink" title="4 方法"></a>4 方法</h1><p>本节概述了CaseEncoder的设计和实现。图 2<br>展示了该模型的总体框架。我们首先介绍 4.1<br>节中用于数据准备的细粒度案例抽样方法。然后，在 4.2 节中，我们描述了<br>CaseEncoder 中提出的预训练任务。</p>
+<p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/CaseEncoder%EF%BC%9A%E7%94%A8%E4%BA%8E%E6%B3%95%E5%BE%8B%E6%A1%88%E4%BE%8B%E7%BC%96%E7%A0%81%E7%9A%84%E7%9F%A5%E8%AF%86%E5%A2%9E%E5%BC%BA%E9%A2%84%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B%203456bfbfec104e9fb5e8223a7e20763c/Untitled%201.png" alt="Untitled"></p>
+<h2 id="4-1-细粒度案例抽样"><a href="#4-1-细粒度案例抽样" class="headerlink" title="4.1 细粒度案例抽样"></a>4.1 细粒度案例抽样</h2><p>最近针对法律方向的预训练语言模型研究并未专注于从自下而上的角度理解法律文本。换句话说，大多数预训练语言模型仅仅是将通用领域的训练语料库替换为法律文本，而没有考虑这些文本之间的法律相关性。这主要是因为对法律案例进行标注耗时且需要大量专业知识，使得收集大规模标记数据具有挑战性。另一方面，在已被证明在预训练阶段有效的对比学习中，数据需要事先被采样为正负案例。不同于通用领域，在法律领域中，仅仅基于文档中的原始信息（例如罪名、法律条文等）对正负法律案例进行抽样并不足够合适。因为在真实的法律场景中，法官通常根据案件的关键情况和要素（对法律条文的细致解释）来裁决案件。因此，本文提出了一种针对法官决定案件特定过程的精细化抽样方法，用于法律案例文档。通过这样做，抽样得到的正负案例可以尽可能与随后的对比学习任务中的手动标记的相关性相匹配。</p>
+<p>通常，一条法律条文涵盖多个分支。一个分支描述符合该条文的具体且明确的情况。例如，图3中显示的中国刑法第133-1条有四个行为，其中行为（1）、（2）和（4）分别描述一个确定的分支，但行为（3）使用两个“或”子句来涵盖所有分支。具体地，“从事校车服务”和“从事客运服务”属于不同的分支，即使它们属于同一条文，也不会出现在同一个案例中。在本文中，我们称这种并列关系中的短语。根据乘法原理，行为（3）描述了2<br>× 2 &#x3D; 4个分支。因此，第133-1条总共有1×3+4 &#x3D;<br>7个分支。根据第133-1条，一个条文中的短语不仅可以按顺序编写，还可以以并列的方式。换句话说，一个法律条文的结构是复杂的。即使对于属于同一条文的两个案例，如果没有任何详细信息，模型很难识别它们之间的法律相关性，因为这样的案例可能属于该条文的不同分支。为了应对这一挑战，在法律案例中，法律条文的信息需要在更加细致的层面上进行进一步探索。在本文中，我们确定了更加精细化的条文信息，即分支级别的相似性，作为找到我们案例抽样算法中正负案例的初步步骤。</p>
+<p>为了获得法律案例的分支级别相似性，首先需要从所有法律条文中提取分支。如图3所述，提取和预处理包括以下步骤：首先，将所有法律条文拆分成短语。然后，属于同一条文的短语被重构为分支。类似于第133-1条的例子，按顺序编写的短语属于同一分支，而并列关系中的短语属于不同分支。最后，我们将每个分支拆分为单词，并移除所有无意义的词语（例如，停用词、介词）。一个分支中剩余的单词被称为一个序列。属于同一法律条文的所有这些序列构成了一篇法律文章的语料库。总之，具有N条文的法律系统有N个文章语料库：</p>
+<p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/CaseEncoder%EF%BC%9A%E7%94%A8%E4%BA%8E%E6%B3%95%E5%BE%8B%E6%A1%88%E4%BE%8B%E7%BC%96%E7%A0%81%E7%9A%84%E7%9F%A5%E8%AF%86%E5%A2%9E%E5%BC%BA%E9%A2%84%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B%203456bfbfec104e9fb5e8223a7e20763c/Untitled%202.png" alt="Untitled"></p>
+<p>这里T是文章#p中序列的数量（即分支的数量）。借助文章语料库，我们可以获得案例的精细法律特征。具体而言，我们首先从案例文档中提取Holding，其中包含支持最终裁决的理由，并与案例的条文高度相关。在法律领域，犯有相同罪行的案例具有共同的条文。因此，我们的案例抽样策略可以利用文章语料库识别它们之间的细粒度法律相似性。假设案例ci属于文章#p且案例ci的提取的Holding为hi，我们可以通过以下方式计算细粒度法律特征vip：</p>
+<p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/CaseEncoder%EF%BC%9A%E7%94%A8%E4%BA%8E%E6%B3%95%E5%BE%8B%E6%A1%88%E4%BE%8B%E7%BC%96%E7%A0%81%E7%9A%84%E7%9F%A5%E8%AF%86%E5%A2%9E%E5%BC%BA%E9%A2%84%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B%203456bfbfec104e9fb5e8223a7e20763c/Untitled%203.png" alt="Untitled"></p>
+<p>这里f (seqpq,<br>hi)表示文章#p的第q个序列和hi给定语料库Ca之间的BM25（Robertson等人，1995年）分数。在这里使用BM25的原因是实验结果显示，代表术语级别相似性的传统和精心设计的复杂方法之间的差异很小。vip可以直观地解释为细粒度文章级别的法律案例特征之一。接下来，给定两个案例ci和cj，两个案例之间的细粒度相似性权重wij可以表示为：</p>
+<p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/CaseEncoder%EF%BC%9A%E7%94%A8%E4%BA%8E%E6%B3%95%E5%BE%8B%E6%A1%88%E4%BE%8B%E7%BC%96%E7%A0%81%E7%9A%84%E7%9F%A5%E8%AF%86%E5%A2%9E%E5%BC%BA%E9%A2%84%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B%203456bfbfec104e9fb5e8223a7e20763c/Untitled%204.png" alt="Untitled"></p>
+<p>这里Ai是涉及案例ci的文章集合，cos是余弦相似度分数，k表示Ai中第k个文章。换句话说，两个案例之间的细粒度相似性权重主要由两个方面决定：两个案例之间的文章重叠程度以及它们的细粒度法律特征vik和vjk之间的余弦相似度。注意，在方程4中添加了一个最大函数，因为wij由Ai<br>∩ Aj中所有文章的最相似情况给出。</p>
+<p>最后，对于法律案例语料库中的每个案例ci，细粒度抽样方法可以根据wii+值抽样出一个在法律上可解释的正例案例ci+，这可以被视为指示法律相关性的伪标签。</p>
+<ol>
+<li><strong>细粒度采样方法</strong>：针对每个法律案例 **<code>ci</code>**，根据相应的 <strong><code>wii+</code></strong><br>值（在公式中描述的细粒度相似性权重），该方法能够选择并采样出一个合乎法律相关性的正样本案例<br>**<code>ci+</code>**。这里的 <strong><code>wii+</code></strong> 本质上是一个权重值，代表了案例 <strong><code>ci</code></strong><br>与另一个法律相关案例 <strong><code>ci+</code></strong><br>之间的相似度，用作一个伪标签，指示了案例之间的法律相关性程度。</li>
+<li><strong>伪标签作用</strong>：这个伪标签 <strong><code>wii+</code></strong><br>被用来指导预训练过程中数据的选择。在预训练阶段，为了强化模型对案例之间法律相关性的理解，这些法律相关的正样本<br><strong><code>ci+</code></strong> 被选择作为训练样本的一部分。这些样本与原始案例 <strong><code>ci</code></strong><br>一起形成了一个四元组的形式：**<code>(ci, ci+, vip, vi+p)</code>**，其中 <strong><code>vip</code></strong> 和<br><strong><code>vi+p</code></strong> 是案例 <strong><code>ci</code></strong> 和 <strong><code>ci+</code></strong><br>的细粒度法律特征（根据公式4计算），而 <strong><code>p</code></strong><br>是在公式4中得到最大余弦相似度的法律条文的索引。</li>
+</ol>
+<h2 id="4-2-法律类预训练任务"><a href="#4-2-法律类预训练任务" class="headerlink" title="4.2 法律类预训练任务"></a>4.2 法律类预训练任务</h2><p>作为面向法律的预训练模型，我们的目标是将法律知识融入到预训练任务的设计中，以便模型在训练后不仅能在语义层面理解案例文档，还能在法律概念层面进行理解。为此，在本文中，我们参考相关案例的判定标准来设计我们的预训练任务。正如Ma等人（2021b）所示，如果两个案例满足两个要求，即它们的关键情况之间相似度高，以及它们的关键要素之间相似度高，则认为两个案例相关。具体而言，关键情况指重要的案件描述，而关键要素更关注与法律条文的一致性，并代表了关键情况的法律层面抽象。总结而言，当案例描述和抽象的法律概念都相关时，一个案例被认为与另一个案例相关。考虑到在其他自然语言处理任务中的整体表现，我们选择了中文RoBERTa（Liu等人，2019）作为CaseEncoder的主干。根据这个判定标准的理念，CaseEncoder通过两个任务进行预训练，分别用于识别关键情况和关键要素。</p>
+<h3 id="4-2-1-预训练任务1"><a href="#4-2-1-预训练任务1" class="headerlink" title="4.2.1 预训练任务1"></a>4.2.1 预训练任务1</h3><p>4.2.1 预训练任务1<br>第一个预训练任务是遮盖语言建模（MLM）任务，它能够捕获案例描述的常规语义级别含义。正如Devlin等人（2018）；Liu等人（2019）；Ma等人（2021a）所讨论的那样，MLM有助于生成具有上下文信息的嵌入。这些嵌入对于表征法律案例中的关键情况非常有益。具体而言，我们仅选择案例文档中的事实部分，随机遮盖其中的15%标记用于MLM，因为关键情况都包含在事实部分中。然后，遮盖的文本被输入到CaseEncoder中，根据周围未遮盖的标记来预测被遮盖的标记。MLM损失函数被定义为<br>其中x是事实部分的文本，m(x)是被遮盖的标记集合，x\m(x)是未被遮盖的标记集合。</p>
+<p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/CaseEncoder%EF%BC%9A%E7%94%A8%E4%BA%8E%E6%B3%95%E5%BE%8B%E6%A1%88%E4%BE%8B%E7%BC%96%E7%A0%81%E7%9A%84%E7%9F%A5%E8%AF%86%E5%A2%9E%E5%BC%BA%E9%A2%84%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B%203456bfbfec104e9fb5e8223a7e20763c/Untitled%205.png" alt="Untitled"></p>
+<h3 id="4-2-2-预训练任务2"><a href="#4-2-2-预训练任务2" class="headerlink" title="4.2.2 预训练任务2"></a>4.2.2 预训练任务2</h3><p>第二个预训练任务是一项精细级对比学习任务，利用了在4.1节中获得的四元组（ci、ci+、vi、vi+）的信息。先前工作中的对比学习任务（Chen等人，2020年）使用增强的正例来训练模型，并将同一批次中的其余案例视为负例。然而，在法律领域，相关性的尺度更加精细。一个法律案例可能部分相关于另一个案例，相关性程度主要由先前提到的关键要素决定。因此，提出了一项精细级对比学习任务，以增强关键要素的识别。</p>
+<p>具体来说，假设批次大小为N，每个四元组有两个案例，在一个批次中的案例总数为2N。首先，采用多层Transformer来获取2N案例的表示。然后，我们将Transformer最后一个隐藏层中的[CLS]标记的输出作为案例嵌入：e1、e2、…、e2N，ei<br>∈ RH，其中H是隐藏大小。最后，这个精细级对比学习任务的训练目标，称为Biased<br>Circle Loss（BCL），被定义为：</p>
+<p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/CaseEncoder%EF%BC%9A%E7%94%A8%E4%BA%8E%E6%B3%95%E5%BE%8B%E6%A1%88%E4%BE%8B%E7%BC%96%E7%A0%81%E7%9A%84%E7%9F%A5%E8%AF%86%E5%A2%9E%E5%BC%BA%E9%A2%84%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B%203456bfbfec104e9fb5e8223a7e20763c/Untitled%206.png" alt="Untitled"></p>
+<p>这里sp和sn分别是正例和负例案例嵌入对之间的余弦相似度分数。αp和αn是控制收敛速度的参数，其中αp由方程式4中的法律特定相关权重确定。γ、Op、On、∆p和∆n是尺度因子、sp的最优、sn的最优、类间间隔和类内间隔的超参数。</p>
+<p>通过这种方式，CaseEncoder被训练以将同一类别中的案例嵌入拉近，并将不同类别中的案例嵌入推远。案例嵌入在向量空间中的距离取决于sp和sn的值。我们提出的损失函数与Circle<br>Loss（Sun等人，2020年）有两个主要区别：首先，我们将原始损失函数从二元设置扩展到多类设置，因为批次中的法律案例可以被分类为多个类别。具体来说，如果两个案例的法律特定相关权重大于特定阈值WT，则我们认为它们属于同一类别，并且这样的规则在批次中的所有案例上都是传递的。因此，方程式6的实际实现更为复杂，因为案例属于多个类别。其次，我们在LBCL中添加了权重参数α，以考虑案例之间相关性的程度。因此，优化目标会根据w的值而变化。通过考虑法律特定的相关权重，CaseEncoder被训练以细分相关案例。最后，CaseEncoder通过MLM损失和BCL损失的线性组合进行优化：<br>这里λ是一个超参数。</p>
+<p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/CaseEncoder%EF%BC%9A%E7%94%A8%E4%BA%8E%E6%B3%95%E5%BE%8B%E6%A1%88%E4%BE%8B%E7%BC%96%E7%A0%81%E7%9A%84%E7%9F%A5%E8%AF%86%E5%A2%9E%E5%BC%BA%E9%A2%84%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B%203456bfbfec104e9fb5e8223a7e20763c/Untitled%207.png" alt="Untitled"></p>
+<h1 id="5-实验"><a href="#5-实验" class="headerlink" title="5 实验"></a>5 实验</h1><h2 id="5-1-数据集和评估指标"><a href="#5-1-数据集和评估指标" class="headerlink" title="5.1 数据集和评估指标"></a>5.1 数据集和评估指标</h2><p>本文采用三个公开可用的数据集：LeCaRD、CAIL2021-LCR 和<br>CAIL2022-LCR。LeCaRD（马等，2021b）是第一个中文法律案例检索基准，被广泛用于检索模型的评估。《法律人工智能挑战赛》（CAIL）（肖等，2018）是自2018年以来每年举办的一项竞赛，旨在推动人工智能技术和数字司法的更高水平。CAIL2021-LCR<br>1 和 CAIL2022-LCR 2<br>是CAIL的两个竞赛数据集。值得注意的是，由于实验设置是零-shot，正如在第4节介绍的，本文提及的所有方法都不需要训练或微调阶段。因此，数据集中的训练集和测试集均包含在评估中。这些数据集涉及的法律文件总数为537。作为一个检索任务，在本文中，所有模型都是通过标准化折减累积增益（NDCG）指标进行评估的。在本文中，我们考虑了三种不同的NDCG指标：NDCG@10、NDCG@20<br>和 NDCG@30。</p>
+<h2 id="5-2-基线"><a href="#5-2-基线" class="headerlink" title="5.2 基线"></a>5.2 基线</h2><p>为了全面评估CaseEncoder在法律案例检索上的性能，在本文中，我们采用了以下在法律领域广泛应用的PLM作为基线：<br>•<br>BERT-XS（钟等，2019）是BERT（Devlin等，2018）的新版本，它对中文刑事文件进行了二次预训练。与原始的BERT相比，BERT-XS主要专注于法律领域特定的任务。<br>•<br>Lawformer（肖等，2021）是第一个面向法律并基于longformer（Beltagy等，2020）的语言模型，它结合了任务驱动的全局注意力和局部滑动窗口注意力来捕获远距离信息。Lawformer将输入长度从512个标记扩展到4096个标记，以适应法律文件的长长度。<br>•<br>BERT-PLI（邵等，2020）聚合了两个案例文档之间的段落级语义相似性以检索法律案例。作为BERT-PLI的主干，使用COLIEE2019（Rabelo等，2019）的案例法数据集对BERT模型进行了微调以实现对齐。</p>
+<p>RoBERTa（Liu等人，2019年）是对BERT（Devlin等人，2018年）的复制，广泛研究了超参数设置和训练数据大小。对各种自然语言处理任务的实验结果显示，RoBERTa能够达到或超过许多先前的预训练语言模型的性能。由于本文中所有数据集都基于中国的法律系统，我们采用了中文版本的RoBERTa（Cui等人，2019年）作为基线。</p>
+<p>•<br>RoBERTa-Legal是RoBERTa的法律版本，通过MLM任务对法律数据进行了二次预训练。</p>
+<p>• OpenAI API3是获取由OpenAI<br>LLMs生成的文本嵌入的官方公开方式。在本文中，我们采用OpenAI提供的第二代嵌入模型text-embedding-ada002（Brown等人，2020年）来衡量法律文件的相似性。</p>
+<h2 id="5-3-实施细节"><a href="#5-3-实施细节" class="headerlink" title="5.3 实施细节"></a>5.3 实施细节</h2><p>为了进行公平比较，CaseEncoder和基线以相同方式用于检索法律案例。具体来说，所有模型采用常用的双编码器范式来检索法律案例。也就是说，模型分别使用查询的全文和候选案例的事实部分来生成文档级别的查询嵌入和候选案例嵌入，而无需任何二次预训练或微调。</p>
+<p>最终检索的排名列表是根据查询嵌入和候选案例嵌入之间的余弦相似度进行排序的。所有PLMs均来自Huggingface（Wolf等人，2019年），学习率设置为1 </p>
+<ul>
+<li>10^-5。</li>
+</ul>
+<p>BM25算法由Gensim（ˇReh ̊ uˇrek等人，2011年）实现。CaseEncoder的超参数为：γ<br>&#x3D; 16，Op &#x3D; 1.25，On &#x3D; 0.25，δp &#x3D; 0.75，δn &#x3D; 0.25，WT &#x3D; 0.25，λ &#x3D; exp<br>∗10^-6。所有训练和实验均在八个32G的NVIDIA V100 GPU上进行。</p>
+<p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/CaseEncoder%EF%BC%9A%E7%94%A8%E4%BA%8E%E6%B3%95%E5%BE%8B%E6%A1%88%E4%BE%8B%E7%BC%96%E7%A0%81%E7%9A%84%E7%9F%A5%E8%AF%86%E5%A2%9E%E5%BC%BA%E9%A2%84%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B%203456bfbfec104e9fb5e8223a7e20763c/Untitled%208.png" alt="Untitled"></p>
+<h2 id="5-4-实验结果"><a href="#5-4-实验结果" class="headerlink" title="5.4 实验结果"></a>5.4 实验结果</h2><p>CaseEncoder和基线在LeCaRD、CAIL2021-LCR和CAIL2022-LCR数据集上的整体表现如表1所示。通过实验结果，我们得到以下观察：</p>
+<p>•<br>与基线相比，CaseEncoder在三个数据集的所有评估指标上都取得了最佳结果。此外，CaseEncoder在除了一个结果（即CAIL2021-LCR上RoBERTa-Legal的NDCG@30）之外的其他结果中都以显著的差距（即0.855到0.876）领先于基线。这个现象说明了CaseEncoder在没有任何微调的情况下检索法律案例的有效性。知识增强的采样策略和预训练任务有助于检索具有法律意义的相关案例。</p>
+<p>•<br>LeCaRD的整体结果普遍低于CAIL2021-LCR和CAIL2022-LCR数据集。这主要是由于数据语料库的异质性造成的。具体来说，LeCaRD中候选文档的汇总没有任何限制，而CAIL2021-LCR和CAIL2022-LCR则排除了长度极长的文档。因此，LeCaRD比其他两个数据集更具挑战性。</p>
+<p>•<br>作为CaseEncoder的骨干，RoBERTa在所有基线中表现出竞争力，这是一个与其在其他自然语言处理任务上的表现一致。此外，RoBERTa-Legal具有第二最佳的整体表现，并且优于原始的RoBERTa，这证明了Gururangan等人（2020年）的观点：使用领域特定数据进行二次预训练有利于目标领域的整体性能。最后，CaseEncoder优于其骨干模型及其法律版本的骨干模型，这表明CaseEncoder的有效性不仅仅取决于训练数据。</p>
+<p>•<br>BERT-XS（钟等人，2019年）的有效性受到限制，因为它利用了下一句预测（NSP）任务进行预训练，其[CLS]标记并未经过训练以表示文档级别的嵌入。此外，BERT-PLI并不如Shao等人（2020年）报道的那样有效。一个可能的解释是，BERT-PLI利用了COLIEE2020（Rabelo等人，2020年）中蕴涵任务的数据集作为外部法律数据源来微调模型。为了进行公平比较，本文中不导入任何外部数据进行进一步训练。因此，与Shao等人（2020年）报告的结果相比，BERT-PLI的性能下降了。</p>
+<p>•<br>OpenAI提供的嵌入式LLM在零shot法律案例检索方面并不像在一般领域中那么有效。其整体性能甚至被参数规模更小的PLMs（例如RoBERTa和RoBERTa-Legal）超越。这一结果表明，目前，在一般领域中的LLM并不是法律案例检索的最佳选择。</p>
+<h2 id="5-5-消融研究"><a href="#5-5-消融研究" class="headerlink" title="5.5 消融研究"></a>5.5 消融研究</h2><p>为了调查我们提出的精细级抽样方法、知识增强对比学习任务以及我们提出的BCL损失函数的有效性，我们进一步进行了消融研究。具体来说，我们：1）用常规的批内抽样（同一文章中的案例简单地被视为正例）替换我们的抽样方法，2）用infoNCE（Oord等人，2018年）替换BCL损失，3）用Circle<br>Loss（Sun等人，2020年）替换BCL损失，4）分别移除精细级对比学习任务。如表2所示，替换抽样方法、BCL损失函数或移除对比学习任务都会导致性能下降。因此，本文提出的所有这些创新都对CaseEncoder的有效性有所贡献。表2中的结果还表明，BCL对于CaseEncoder的改进贡献最大。传统的二元对比学习任务对性能的贡献有限，因为移除整个对比学习任务与用infoNCE替换BCL具有类似的性能，这意味着改进主要是由BCL实现的。</p>
+<p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/CaseEncoder%EF%BC%9A%E7%94%A8%E4%BA%8E%E6%B3%95%E5%BE%8B%E6%A1%88%E4%BE%8B%E7%BC%96%E7%A0%81%E7%9A%84%E7%9F%A5%E8%AF%86%E5%A2%9E%E5%BC%BA%E9%A2%84%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B%203456bfbfec104e9fb5e8223a7e20763c/Untitled%209.png" alt="Untitled"></p>
+<h2 id="5-6-案例嵌入的可视化"><a href="#5-6-案例嵌入的可视化" class="headerlink" title="5.6 案例嵌入的可视化"></a>5.6 案例嵌入的可视化</h2><p>CaseEncoder旨在有效地对法律领域的案例文档建模。除了检索任务外，文档级别的案例嵌入还可用于其他下游任务，比如罪名预测、句子预测和法律条文推荐。因此，文档级别案例嵌入的质量是下游任务性能的基础。图4是CaseEncoder如何提高罪名预测案例嵌入质量的示例。图4中的案例属于六种刑事罪名。对于每种罪名，我们从法律语料库中随机选择2500个案例，并使用四种不同的方法生成它们的案例嵌入。然后，我们使用tSNE（Van<br>der<br>Maaten和Hinton，2008年）来降低案例嵌入的维度以进行可视化。在所有PLMs中，CaseEncoder具有将案例嵌入基于其罪名划分为六个簇的最佳能力，只有一对类似的罪名（Provocation和Public<br>Brawl）存在部分重叠。相比之下，RoBERTa部分区分了六种罪名，但比CaseEncoder有更多的重叠。BERT-XS和Lawformer的性能受限，与第5.4节中的检索结果和解释一致。这些可视化展示了CaseEncoder中嵌入的精细法律知识如何能够在案例检索之外的一系列法律应用中发挥作用。</p>
+<p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/CaseEncoder%EF%BC%9A%E7%94%A8%E4%BA%8E%E6%B3%95%E5%BE%8B%E6%A1%88%E4%BE%8B%E7%BC%96%E7%A0%81%E7%9A%84%E7%9F%A5%E8%AF%86%E5%A2%9E%E5%BC%BA%E9%A2%84%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B%203456bfbfec104e9fb5e8223a7e20763c/Untitled%2010.png" alt="Untitled"></p>
+<h1 id="6-结论和局限性"><a href="#6-结论和局限性" class="headerlink" title="6 结论和局限性"></a>6 结论和局限性</h1><p>本文提出了CaseEncoder，一种利用精细法律知识增强案例文档嵌入表示的预训练编码器。通过将法律条文标注引入抽样方法，我们在数据准备过程中改善了抽样正负案例的质量。接下来，在预训练阶段，CaseEncoder采用了两个法律特定的预训练任务，以与法律领域的相关判据相一致。实验和视觉分析证明了CaseEncoder生成的案例嵌入在解决零shot法律案例检索中的有效性。</p>
+<p>CaseEncoder的主要局限性是：首先，相似法律案例的定义是基于”犯同一罪行的案例具有共同的条文”的假设，这并不适用于所有法律体系。然而，将法律条文注释为精细的法律知识以增强PLMs性能的想法有潜力被其他法律体系采纳。未来，我们将考虑验证CaseEncoder在不同法律体系和语言的数据集上的有效性。我们还将探索CaseEncoder在不同下游法律任务中的潜力。其次，第4.2.2节中的传递规则在所有情况下并不一致。例如，假设案例A和B属于同一类别，B和C也属于同一类别，那么如果案例A和C都属于多个类别，则案例A和C可能没有共同的法律条文。根据我们的实验结果，在预训练阶段减小批次大小可以减轻这种特殊情况的影响，因为随着批次大小的减小，出现两个多类案例出现在同一训练批次中的可能性也下降了。我们将把我们提出的BCL函数的优化留作未来的工作。</p>
+
+<div class="article-footer fs14">
+    <section id="license">
+      <div class="header"><span>License</span></div>
+      <div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
+</div>
+    </section>
+    </div>
+</article>
+<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">Newer</div><a href="/2024/04/19/SAILER%EF%BC%9A%E9%9D%A2%E5%90%91%E6%B3%95%E5%BE%8B%E6%A1%88%E4%BE%8B%E6%A3%80%E7%B4%A2%E7%9A%84%E7%BB%93%E6%9E%84%E6%84%9F%E7%9F%A5%E9%A2%84%E8%AE%AD%E7%BB%83%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B/">SAILER：面向法律案例检索的结构感知预训练语言模型</a></div><div class="item" id="next"><div class="note">Older</div><a href="/2024/04/19/%E5%80%A6%E6%80%A0%E7%A4%BE%E4%BC%9A/">倦怠社会</a></div></section></div>
+
+
+
+
+
+
+<footer class="page-footer footnote"><hr><div class="text"><p>本站由 <a href="/">Hannah</a> 使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0">Stellar 1.27.0</a> 主题创建。<br>本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
+</div></footer>
+<div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right">
+<div class="widgets">
+
+
+
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">On This Page</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#CaseEncoder%EF%BC%9A%E7%94%A8%E4%BA%8E%E6%B3%95%E5%BE%8B%E6%A1%88%E4%BE%8B%E7%BC%96%E7%A0%81%E7%9A%84%E7%9F%A5%E8%AF%86%E5%A2%9E%E5%BC%BA%E9%A2%84%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B"><span class="toc-text">CaseEncoder：用于法律案例编码的知识增强预训练模型</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E5%BC%95%E8%A8%80"><span class="toc-text">1 引言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C"><span class="toc-text">2 相关工作</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-%E4%BB%BB%E5%8A%A1%E5%AE%9A%E4%B9%89"><span class="toc-text">3 任务定义</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-%E6%96%B9%E6%B3%95"><span class="toc-text">4 方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-%E7%BB%86%E7%B2%92%E5%BA%A6%E6%A1%88%E4%BE%8B%E6%8A%BD%E6%A0%B7"><span class="toc-text">4.1 细粒度案例抽样</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-%E6%B3%95%E5%BE%8B%E7%B1%BB%E9%A2%84%E8%AE%AD%E7%BB%83%E4%BB%BB%E5%8A%A1"><span class="toc-text">4.2 法律类预训练任务</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-1-%E9%A2%84%E8%AE%AD%E7%BB%83%E4%BB%BB%E5%8A%A11"><span class="toc-text">4.2.1 预训练任务1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-2-%E9%A2%84%E8%AE%AD%E7%BB%83%E4%BB%BB%E5%8A%A12"><span class="toc-text">4.2.2 预训练任务2</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-%E5%AE%9E%E9%AA%8C"><span class="toc-text">5 实验</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1-%E6%95%B0%E6%8D%AE%E9%9B%86%E5%92%8C%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87"><span class="toc-text">5.1 数据集和评估指标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-2-%E5%9F%BA%E7%BA%BF"><span class="toc-text">5.2 基线</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-3-%E5%AE%9E%E6%96%BD%E7%BB%86%E8%8A%82"><span class="toc-text">5.3 实施细节</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-4-%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C"><span class="toc-text">5.4 实验结果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-5-%E6%B6%88%E8%9E%8D%E7%A0%94%E7%A9%B6"><span class="toc-text">5.5 消融研究</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-6-%E6%A1%88%E4%BE%8B%E5%B5%8C%E5%85%A5%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96"><span class="toc-text">5.6 案例嵌入的可视化</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-%E7%BB%93%E8%AE%BA%E5%92%8C%E5%B1%80%E9%99%90%E6%80%A7"><span class="toc-text">6 结论和局限性</span></a></li></ol></div><div class="widget-footer">
+
+<a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/></g></svg><span>Scroll to Top</span></a><a class="buttom" onclick="util.scrollComment()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M10.46 1.25h3.08c1.603 0 2.86 0 3.864.095c1.023.098 1.861.3 2.6.752a5.75 5.75 0 0 1 1.899 1.899c.452.738.654 1.577.752 2.6c.095 1.004.095 2.261.095 3.865v1.067c0 1.141 0 2.036-.05 2.759c-.05.735-.153 1.347-.388 1.913a5.75 5.75 0 0 1-3.112 3.112c-.805.334-1.721.408-2.977.43a10.81 10.81 0 0 0-.929.036c-.198.022-.275.054-.32.08c-.047.028-.112.078-.224.232c-.121.166-.258.396-.476.764l-.542.916c-.773 1.307-2.69 1.307-3.464 0l-.542-.916a10.605 10.605 0 0 0-.476-.764c-.112-.154-.177-.204-.224-.232c-.045-.026-.122-.058-.32-.08c-.212-.023-.49-.03-.93-.037c-1.255-.021-2.171-.095-2.976-.429A5.75 5.75 0 0 1 1.688 16.2c-.235-.566-.338-1.178-.389-1.913c-.049-.723-.049-1.618-.049-2.76v-1.066c0-1.604 0-2.86.095-3.865c.098-1.023.3-1.862.752-2.6a5.75 5.75 0 0 1 1.899-1.899c.738-.452 1.577-.654 2.6-.752C7.6 1.25 8.857 1.25 10.461 1.25M6.739 2.839c-.914.087-1.495.253-1.959.537A4.25 4.25 0 0 0 3.376 4.78c-.284.464-.45 1.045-.537 1.96c-.088.924-.089 2.11-.089 3.761v1c0 1.175 0 2.019.046 2.685c.045.659.131 1.089.278 1.441a4.25 4.25 0 0 0 2.3 2.3c.515.214 1.173.294 2.429.316h.031c.398.007.747.013 1.037.045c.311.035.616.104.909.274c.29.17.5.395.682.645c.169.232.342.525.538.856l.559.944a.52.52 0 0 0 .882 0l.559-.944c.196-.331.37-.624.538-.856c.182-.25.392-.476.682-.645c.293-.17.598-.24.909-.274c.29-.032.639-.038 1.037-.045h.032c1.255-.022 1.913-.102 2.428-.316a4.25 4.25 0 0 0 2.3-2.3c.147-.352.233-.782.278-1.441c.046-.666.046-1.51.046-2.685v-1c0-1.651 0-2.837-.089-3.762c-.087-.914-.253-1.495-.537-1.959a4.25 4.25 0 0 0-1.403-1.403c-.464-.284-1.045-.45-1.96-.537c-.924-.088-2.11-.089-3.761-.089h-3c-1.651 0-2.837 0-3.762.089" clip-rule="evenodd"/><path fill="currentColor" d="M9 11a1 1 0 1 1-2 0a1 1 0 0 1 2 0m4 0a1 1 0 1 1-2 0a1 1 0 0 1 2 0m4 0a1 1 0 1 1-2 0a1 1 0 0 1 2 0"/></svg><span>Join Discussion</span></a></div></widget>
+</div></aside><div class='float-panel blur'>
+  <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
+  </button>
+  <button type='button' style='display:none' class='mobile-only leftbar-toggle mobile' onclick='sidebar.leftbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 11c0-3.771 0-5.657 1.172-6.828C4.343 3 6.229 3 10 3h4c3.771 0 5.657 0 6.828 1.172C22 5.343 22 7.229 22 11v2c0 3.771 0 5.657-1.172 6.828C19.657 21 17.771 21 14 21h-4c-3.771 0-5.657 0-6.828-1.172C2 18.657 2 16.771 2 13z"/><path id="sep" stroke-linecap="round" d="M5.5 10h6m-5 4h4m4.5 7V3"/></g></svg>
+  </button>
+</div>
+</div><div class="scripts">
+<script type="text/javascript">
+  const ctx = {
+    date_suffix: {
+      just: `Just`,
+      min: `minutes ago`,
+      hour: `hours ago`,
+      day: `days ago`,
+    },
+    root : `/`,
+  };
+
+  // required plugins (only load if needs)
+  if (`local_search`) {
+    ctx.search = {};
+    ctx.search.service = `local_search`;
+    if (ctx.search.service == 'local_search') {
+      let service_obj = Object.assign({}, `{"field":"all","path":"/search.json","content":true,"sort":"-date"}`);
+      ctx.search[ctx.search.service] = service_obj;
+    }
+  }
+  const def = {
+    avatar: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/3442075.svg`,
+    cover: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg`,
+  };
+  const deps = {
+    jquery: `https://cdn.bootcdn.net/ajax/libs/jquery/3.7.1/jquery.min.js`,
+    marked: `https://cdn.bootcdn.net/ajax/libs/marked/4.0.18/marked.min.js`
+  }
+  
+
+</script>
+
+<script type="text/javascript">
+  const utils = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    css: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    js: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      if (src.startsWith('/')){
+        src = ctx.root + src.substring(1);
+      }
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    jq: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        utils.js(deps.jquery).then(fn)
+      } else {
+        fn()
+      }
+    },
+    
+    onLoading: (el) => {
+      if (el) {
+        $(el).append('<div class="loading-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" stroke-opacity=".3" d="M12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="1.3s" values="60;0"/></path><path stroke-dasharray="15" stroke-dashoffset="15" d="M12 3C16.9706 3 21 7.02944 21 12"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.3s" values="15;0"/><animateTransform attributeName="transform" dur="1.5s" repeatCount="indefinite" type="rotate" values="0 12 12;360 12 12"/></path></g></svg></div>');
+      }
+    },
+    onLoadSuccess: (el) => {
+      if (el) {
+        $(el).find('.loading-wrap').remove();
+      }
+    },
+    onLoadFailure: (el) => {
+      if (el) {
+        $(el).find('.loading-wrap svg').remove();
+        $(el).find('.loading-wrap').append('<svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" d="M12 3L21 20H3L12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.5s" values="60;0"/></path><path stroke-dasharray="6" stroke-dashoffset="6" d="M12 10V14"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.6s" dur="0.2s" values="6;0"/></path></g><circle cx="12" cy="17" r="1" fill="currentColor" fill-opacity="0"><animate fill="freeze" attributeName="fill-opacity" begin="0.8s" dur="0.4s" values="0;1"/></circle></svg>');
+        $(el).find('.loading-wrap').addClass('error');
+      }
+    },
+    request: (el, url, callback, onFailure) => {
+      let retryTimes = 3;
+      utils.onLoading(el);
+      function req() {
+        return new Promise((resolve, reject) => {
+          let status = 0; // 0 等待 1 完成 2 超时
+          let timer = setTimeout(() => {
+            if (status === 0) {
+              status = 2;
+              timer = null;
+              reject('请求超时');
+              if (retryTimes == 0) {
+                onFailure();
+              }
+            }
+          }, 5000);
+          fetch(url).then(function(response) {
+            if (status !== 2) {
+              clearTimeout(timer);
+              resolve(response);
+              timer = null;
+              status = 1;
+            }
+            if (response.ok) {
+              return response.json();
+            }
+            throw new Error('Network response was not ok.');
+          }).then(function(data) {
+            retryTimes = 0;
+            utils.onLoadSuccess(el);
+            callback(data);
+          }).catch(function(error) {
+            if (retryTimes > 0) {
+              retryTimes -= 1;
+              setTimeout(() => {
+                req();
+              }, 5000);
+            } else {
+              utils.onLoadFailure(el);
+              onFailure();
+            }
+          });
+        });
+      }
+      req();
+    },
+  };
+</script>
+
+<script>
+  const sidebar = {
+    leftbar: () => {
+      if (l_body) {
+        l_body.toggleAttribute('leftbar');
+        l_body.removeAttribute('rightbar');
+      }
+    },
+    rightbar: () => {
+      if (l_body) {
+        l_body.toggleAttribute('rightbar');
+        l_body.removeAttribute('leftbar');
+      }
+    },
+    dismiss: () => {
+      if (l_body) {
+        l_body.removeAttribute('leftbar');
+        l_body.removeAttribute('rightbar');
+      }
+    },
+    toggleTOC: () => {
+      document.querySelector('#data-toc').classList.toggle('collapse');
+    }
+  }
+</script>
+
+<!-- required -->
+<script src="/js/main.js?v=1.27.0" async></script>
+
+<!-- optional -->
+
+
+
+<script defer>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    ctx.services = Object.assign({}, JSON.parse(`{"mdrender":{"js":"/js/services/mdrender.js"},"siteinfo":{"js":"/js/services/siteinfo.js","api":null},"ghinfo":{"js":"/js/services/ghinfo.js"},"sites":{"js":"/js/services/sites.js"},"friends":{"js":"/js/services/friends.js"},"timeline":{"js":"/js/services/timeline.js"},"fcircle":{"js":"/js/services/fcircle.js"},"weibo":{"js":"/js/services/weibo.js"},"memos":{"js":"/js/services/memos.js"}}`));
+    for (let id of Object.keys(ctx.services)) {
+      const js = ctx.services[id].js;
+      if (id == 'siteinfo') {
+        ctx.cardlinks = document.querySelectorAll('a.link-card[cardlink]');
+        if (ctx.cardlinks?.length > 0) {
+          utils.js(js, { defer: true }).then(function () {
+            setCardLink(ctx.cardlinks);
+          });
+        }
+      } else {
+        const els = document.getElementsByClassName(`ds-${id}`);
+        if (els?.length > 0) {
+          utils.jq(() => {
+            if (id == 'timeline' || 'memos' || 'marked') {
+              utils.js(deps.marked).then(function () {
+                utils.js(js, { defer: true });
+              });
+            } else {
+              utils.js(js, { defer: true });
+            }
+          });
+        }
+      }
+    }
+  });
+</script>
+
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    ctx.search = {
+      path: `/search.json`,
+    }
+    utils.js('/js/search/local-search.js', { defer: true });
+  });
+</script><script>
+  window.FPConfig = {
+    delay: 0,
+    ignoreKeywords: [],
+    maxRPS: 5,
+    hoverDelay: 25
+  };
+</script>
+<script defer src="https://cdn.bootcdn.net/ajax/libs/flying-pages/2.1.2/flying-pages.min.js"></script><script defer src="https://cdn.bootcdn.net/ajax/libs/vanilla-lazyload/17.8.4/lazyload.min.js"></script>
+<script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazy",
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    window.lazyLoadInstance?.update();
+  });
+</script><script>
+  ctx.fancybox = {
+    selector: `.timenode p>img`,
+    css: `https://cdn.bootcdn.net/ajax/libs/fancyapps-ui/5.0.22/fancybox/fancybox.min.css`,
+    js: `https://cdn.bootcdn.net/ajax/libs/fancyapps-ui/5.0.22/fancybox/fancybox.umd.min.js`
+  };
+  var selector = '[data-fancybox]:not(.error)';
+  if (ctx.fancybox.selector) {
+    selector += `, ${ctx.fancybox.selector}`
+  }
+  var needFancybox = document.querySelectorAll(selector).length !== 0;
+  if (!needFancybox) {
+    const els = document.getElementsByClassName('ds-memos');
+    if (els != undefined && els.length > 0) {
+      needFancybox = true;
+    }
+  }
+  if (needFancybox) {
+    utils.css(ctx.fancybox.css);
+    utils.js(ctx.fancybox.js, { defer: true }).then(function () {
+      Fancybox.bind(selector, {
+        hideScrollbar: false,
+        Thumbs: {
+          autoStart: false,
+        },
+        caption: (fancybox, slide) => {
+          return slide.triggerEl.alt || null
+        }
+      });
+    })
+  }
+</script><script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    const swiper_api = document.getElementById('swiper-api');
+    if (swiper_api != undefined) {
+      utils.css(`https://unpkg.com/swiper@10.3.1/swiper-bundle.min.css`);
+      utils.js(`https://unpkg.com/swiper@10.3.1/swiper-bundle.min.js`, { defer: true }).then(function () {
+        const effect = swiper_api.getAttribute('effect') || '';
+        var swiper = new Swiper('.swiper#swiper-api', {
+          slidesPerView: 'auto',
+          spaceBetween: 8,
+          centeredSlides: true,
+          effect: effect,
+          rewind: true,
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+        });
+      })
+    }
+  });
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    window.codeElements = document.querySelectorAll('.code');
+    if (window.codeElements.length > 0) {
+      ctx.copycode = {
+        default_text: `Copy`,
+        success_text: `Copied`,
+        toast: `复制成功`,
+      };
+      utils.js('/js/plugins/copycode.js');
+    }
+  });
+</script>
+
+
+<!-- inject -->
+
+</div></body></html>
