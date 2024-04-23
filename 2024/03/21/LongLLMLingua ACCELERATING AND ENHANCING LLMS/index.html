@@ -1,0 +1,668 @@
+
+<!DOCTYPE html><html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0" theme-name="Stellar" theme-version="1.27.0">
+  
+  <meta name="generator" content="Hexo 7.2.0">
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f9fafb">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
+  
+  <title>LongLLMLingua - Hannah_Shaw</title>
+
+  
+    <meta name="description" content="LongLLMLingua: ACCELERATING AND ENHANCING LLMS IN LONG CONTEXT SCENARIOS VIA PROMPT COMPRESSIONAuthor: Microsoft CorporationType: Academic JournalKeywords: 提示语压缩 摘要在长篇背景场景中，大型语言模型（LLMs）面临三个主要挑战：更高的计算&amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LongLLMLingua">
+<meta property="og:url" content="http://example.com/2024/03/21/LongLLMLingua%20ACCELERATING%20AND%20ENHANCING%20LLMS/index.html">
+<meta property="og:site_name" content="Hannah_Shaw">
+<meta property="og:description" content="LongLLMLingua: ACCELERATING AND ENHANCING LLMS IN LONG CONTEXT SCENARIOS VIA PROMPT COMPRESSIONAuthor: Microsoft CorporationType: Academic JournalKeywords: 提示语压缩 摘要在长篇背景场景中，大型语言模型（LLMs）面临三个主要挑战：更高的计算&amp;">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://pic4.zhimg.com/80/v2-b474736db3636d3800c77b9b23327777_1440w.webp">
+<meta property="og:image" content="https://pic4.zhimg.com/80/v2-d69c905787de5eb24a4cc21535855467_1440w.jpg">
+<meta property="og:image" content="https://pic1.zhimg.com/80/v2-84399dd6c4184b9c756fd2b5463326d8_1440w.webp">
+<meta property="og:image" content="https://pic4.zhimg.com/80/v2-98f9e151def95780ab62029c0d13b913_1440w.webp">
+<meta property="og:image" content="https://pic2.zhimg.com/80/v2-d8920de034e53d5b9852243112ca0121_1440w.webp">
+<meta property="og:image" content="https://pic3.zhimg.com/80/v2-954392b282520c4535a87bfb7c49f122_1440w.webp">
+<meta property="og:image" content="https://pic1.zhimg.com/80/v2-2c338f0652ac29814dc6d22e200388a8_1440w.webp">
+<meta property="og:image" content="https://pic3.zhimg.com/80/v2-a04e2dbbf34d772422697d93d5a9165a_1440w.webp">
+<meta property="og:image" content="https://pic4.zhimg.com/80/v2-b474736db3636d3800c77b9b23327777_1440w.webp">
+<meta property="og:image" content="https://pic4.zhimg.com/80/v2-447f347757331d27ba58290e020b267b_1440w.webp">
+<meta property="og:image" content="https://pic4.zhimg.com/80/v2-d5b3cdd89eb553e853476c6949ff288f_1440w.webp">
+<meta property="article:published_time" content="2024-03-20T16:46:34.000Z">
+<meta property="article:modified_time" content="2024-04-23T17:00:03.261Z">
+<meta property="article:author" content="Hannah">
+<meta property="article:tag" content="LLMs">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic4.zhimg.com/80/v2-b474736db3636d3800c77b9b23327777_1440w.webp">
+  
+  
+  
+  <meta name="keywords" content="LLMs">
+
+  <!-- feed -->
+  
+
+  <link rel="stylesheet" href="/css/main.css?v=1.27.0">
+
+  
+
+  
+
+  
+</head>
+<body>
+
+<div class="l_body s:aa content tech" id="start" layout="post" ><aside class="l_left"><div class="leftbar-container">
+
+
+<header class="header"><div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="https://pic.aigexing.net/uploads/9/1253/1608374577/93536629702/28776239.jpg" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></a><a class="title" href="/"><div class="main" ff="title">Hannah_Shaw</div></a></div></header>
+
+<div class="nav-area">
+<div class="search-wrapper" id="search-wrapper"><form class="search-form"><a class="search-button" onclick="document.getElementById(&quot;search-input&quot;).focus();"><svg t="1705074644177" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1560" width="200" height="200"><path d="M1008.839137 935.96571L792.364903 719.491476a56.783488 56.783488 0 0 0-80.152866 0 358.53545 358.53545 0 1 1 100.857314-335.166073 362.840335 362.840335 0 0 1-3.689902 170.145468 51.248635 51.248635 0 1 0 99.217358 26.444296 462.057693 462.057693 0 1 0-158.255785 242.303546l185.930047 185.725053a51.248635 51.248635 0 0 0 72.568068 0 51.248635 51.248635 0 0 0 0-72.978056z" p-id="1561"></path><path d="M616.479587 615.969233a50.428657 50.428657 0 0 0-61.498362-5.534852 174.655348 174.655348 0 0 1-177.525271 3.484907 49.403684 49.403684 0 0 0-58.833433 6.76482l-3.074918 2.869923a49.403684 49.403684 0 0 0 8.609771 78.10292 277.767601 277.767601 0 0 0 286.992355-5.739847 49.403684 49.403684 0 0 0 8.404776-76.667958z" p-id="1562"></path></svg></a><input type="text" class="search-input" id="search-input" placeholder="Search"></form><div id="search-result"></div><div class="search-no-result">No Results!</div></div>
+
+
+<nav class="menu dis-select"></nav>
+</div>
+<div class="widgets">
+
+
+<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">Recent Update</span></div><div class="widget-body fs14"><a class="item title" href="/2024/03/21/LongLLMLingua%20ACCELERATING%20AND%20ENHANCING%20LLMS/"><span class="title">LongLLMLingua</span></a><a class="item title" href="/2023/10/29/SCOTT%20Self-Consistent%20Chain-of-Thought%20Distillation/"><span class="title">SCOTT_ Self-Consistent Chain-of-Thought Distillation</span></a><a class="item title" href="/2023/07/19/Monash-IT-FIT5037/"><span class="title">Monash IT FIT5037</span></a><a class="item title" href="/2021/04/24/Vue%E8%87%AA%E5%AE%9A%E4%B9%89%E7%BB%84%E4%BB%B6%E5%AE%9E%E7%8E%B0%E6%97%A0%E9%99%90%E6%BB%9A%E5%8A%A0%E8%BD%BD%E6%95%B0%E6%8D%AE/"><span class="title">Vue自定义组件实现无限滚加载数据</span></a><a class="item title" href="/2024/04/24/%E6%B3%95%E5%BE%8B%E6%A8%A1%E5%9E%8B%E5%BE%AE%E8%B0%83%E5%AE%9E%E8%B7%B5/"><span class="title">法律模型微调实践参考</span></a><a class="item title" href="/2024/04/19/%E5%80%A6%E6%80%A0%E7%A4%BE%E4%BC%9A/"><span class="title">倦怠社会</span></a></div></widget>
+</div>
+
+</div></aside><div class="l_main" id="main">
+
+
+
+
+
+<div class="article banner top">
+  <div class="content">
+    <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">Home</a>
+<span class="sep"></span><a class="cap breadcrumb" href="/">Blog</a></div>
+<div class="flex-row" id="post-meta"><span class="text created">Posted on: <time datetime="2024-03-20T16:46:34.000Z">2024-03-21</time></span><span class="sep updated"></span><span class="text updated">Updated on: <time datetime="2024-04-23T17:00:03.261Z">2024-04-24</time></span></div></div></div>
+    
+    <div class="bottom only-title">
+      
+      <div class="text-area">
+        <h1 class="text title"><span>LongLLMLingua</span></h1>
+        
+      </div>
+    </div>
+    
+  </div>
+  </div><article class="md-text content"><h1 id="LongLLMLingua-ACCELERATING-AND-ENHANCING-LLMS-IN-LONG-CONTEXT-SCENARIOS-VIA-PROMPT-COMPRESSION"><a href="#LongLLMLingua-ACCELERATING-AND-ENHANCING-LLMS-IN-LONG-CONTEXT-SCENARIOS-VIA-PROMPT-COMPRESSION" class="headerlink" title="LongLLMLingua: ACCELERATING AND ENHANCING LLMS IN LONG CONTEXT SCENARIOS VIA PROMPT COMPRESSION"></a>LongLLMLingua: ACCELERATING AND ENHANCING LLMS IN LONG CONTEXT SCENARIOS VIA PROMPT COMPRESSION</h1><p>Author: Microsoft Corporation<br>Type: Academic Journal<br>Keywords: 提示语压缩</p>
+<h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p>在长篇背景场景中，大型语言模型（LLMs）面临三个主要挑战：更高的计算&#x2F;财务成本、更长的延迟和较差的性能。一些研究表明，LLMs的性能取决于输入提示中关键信息（与问题相关）的密度和位置。受到这些发现的启发，我们提出了LongLLMLingua，用于对输入提示进行压缩，以改善LLMs对关键信息的感知，从而同时解决这三个挑战。我们在包括单&#x2F;多文档问答、少样本学习、摘要、合成任务和代码完成在内的广泛长篇背景场景中进行评估。实验结果表明，LongLLMLingua压缩的提示可以在更小的成本下实现更高的性能。整个系统的延迟也减少了。例如，在NaturalQuestions基准测试中，LongLLMLingua相对于原始提示可以获得高达17.1%的性能提升，输入到GPT-3.5-Turbo的标记数量减少了约4倍。它可以在LongBench和ZeroScrolls基准测试中分别节省28.5美元和27.4美元每1,000个样本的成本。此外，当以2倍至10倍的压缩率压缩约10,000个标记的提示时，LongLLMLingua可以将端到端的延迟加速1.4倍至3.8倍。</p>
+<h1 id="1-引言"><a href="#1-引言" class="headerlink" title="1 引言"></a>1 引言</h1><p>ChatGPT和其他大型语言模型（LLMs）已经彻底改变了面向用户的语言技术，并正在成为越来越多应用程序中的关键组件。精心设计提示对于在特定的下游任务中实现更好的性能是必要的。常用的技术，如上下文学习（ICL）（Dong等，2023）、检索增强生成（RAG）（Lewis等，2020）和Agent（Park等，2023），正在推动提示变得越来越长，甚至达到数千个标记。多文档问答、代码完成和文档摘要等场景也需要处理长篇背景。当LLMs用于长篇背景场景时，存在三个主要挑战：（1）运行这些模型或从提供LLM服务的公司调用API所需的更高计算和财务成本。这对于资源有限的个人或较小的组织来说可能是一个重要的障碍。（2）与LLMs相关的更长延迟，这可能导致生成响应或预测时出现延迟，特别是在用户期望快速而准确的实时场景中，这是一个问题。（3）由LLMs的扩展窗口大小（Xiong等，2023）和提示中与问题相关的关键信息的低密度以及位置不敏感引起的较差性能。图1a显示，LLMs在下游任务中的性能可能随着提示中噪声信息的增加而降低（Shi等，2023）。此外，图1b中的紫色曲线表明，LLMs捕捉相关信息的能力取决于它们在提示中的位置（Liu等，2023）：当相关信息出现在输入上下文的开头或结尾时，它们实现最佳性能，并且如果相关信息位于长篇背景的中间，则性能会显著下降。</p>
+<p>图1：(a) 在提示中噪声信息增加时，LLMs在下游任务中的性能可能降低。在这种情况下，我们基于地面实况或LongLLMLingua rk保留k个最相关的文档&#x2F;段落。较大的k意味着在提示中引入更多噪声。为了提高提示中关键信息的密度，我们提出了问题感知的粗到细的压缩方法。(b) LLMS捕捉相关信息的能力取决于它们在提示中的位置。为了减少中间信息的丢失，我们引入了一个文档重新排序机制。</p>
+<p>受到这些观察的启发，我们提出了LongLLMLingua来解决这三个挑战。具体而言，我们使用高级而高效的LLMLingua（Jiang等，2023a）作为我们的提示压缩的基础框架，以解决前两个挑战，即降低成本和延迟。然而，在长篇背景的情况下，提示中与问题相关的关键信息的分布通常是稀疏的。现有的提示压缩方法，如LLMLingua（Jiang等，2023a）和Selective-Context（Li，2023），在压缩过程中不考虑问题的内容，可能在压缩结果中保留太多噪声信息，导致性能较差。在本文中，LongLLMLingua旨在增强LLM对提示中与问题相关的关键信息的感知，以解决长篇背景场景中的第三个挑战，即性能较差。图1b是一个例子。LongLLMLingua的基本原理是小型语言模型本质上能够捕捉与给定问题相关的关键信息的分布。我们的主要贡献有五个方面：(1) 我们提出了一个问题感知的粗到细的压缩方法，以提高提示中关键信息的密度（第4.1节）；(2) 我们引入了一个文档重新排序机制，以减少中间信息的丢失（第4.2节）；(3) 我们提出了动态压缩比率，以连接粗粒度压缩和细粒度压缩，进行自适应颗粒控制（第4.3节）；(4) 我们提出了一个后压缩子序列恢复策略，以提高关键信息的完整性（第4.4节）；(5) 我们在三个基准测试上评估了LongLLMLingua，即NaturalQuestions（Liu等，2023）、LongBench（Bai等，2023）和ZeroSCROLLS（Shaham等，2023）。实验结果表明，与原始提示相比，LongLLMLingua压缩的提示在更低的成本下可以实现更高的性能。整个系统的延迟也减少了。</p>
+<h1 id="2-问题阐述"><a href="#2-问题阐述" class="headerlink" title="2 问题阐述"></a>2 问题阐述</h1><p>按照LLMLingua（Jiang等，2023a）的做法，我们使用x &#x3D; (xins, xdoc 1 , · · · , xdoc K , xque)来表示提示，其中包括指令xins，K个文档xdoc k 和问题xque。实际上，根据具体的应用场景，提示可以进行修改。例如，可以删除开头的xins，xque可以是用户指定的任何需求，而(xdoc 1 , · · · , xdoc K )可以是用户追加到提示中以获得LLMs对xque更好响应的任何附加材料。提示压缩系统的目标可以表示为：</p>
+<p>$ex​min​D(y,ey​)+λ∥ex​∥0​$</p>
+<p>其中e x表示压缩的提示，是x的标记级子序列。y代表具有x作为输入的地面实况输出文本，e y代表由LLM生成的结果。通过e x。D是两个分布之间的距离度量，例如KL散度。我们期望y和e y的分布尽可能相似。λ是有关压缩比的折衷超参数。在这项工作中，我们还将K个文档（xdoc 1 ，···，xdoc K ）的排列操作空间纳入联合优化考虑。</p>
+<p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://pic4.zhimg.com/80/v2-b474736db3636d3800c77b9b23327777_1440w.webp" alt="https://pic4.zhimg.com/80/v2-b474736db3636d3800c77b9b23327777_1440w.webp"></p>
+<h1 id="3-预备知识：LLMLINGUA"><a href="#3-预备知识：LLMLINGUA" class="headerlink" title="3 预备知识：LLMLINGUA"></a>3 预备知识：LLMLINGUA</h1><p>LLMLingua（Jiang等，2023a）使用一个小型语言模型MS计算原始提示中每个标记的困惑度，然后删除困惑度较低的标记。这种方法背后的原理是，困惑度较低的标记对语言模型整体熵增益的贡献较小，因此删除它们对LLM对上下文的理解影响相对较小。LLMLiungua由三个组件组成：一个预算控制器、一个迭代的标记级提示压缩算法和一个分布对齐机制，如图2中的斜体文本所示。预算控制器为原始提示的各个组件（即指令、演示、问题）分配不同的压缩比，并在演示级别进行粗粒度压缩。中间结果被划分为段，然后按段执行标记级压缩，每个标记的困惑度取决于MS计算的先前压缩段。对于分布对齐，它通过使用由目标LLM生成的数据对MS进行指令调整，缩小LLM分布与用于提示压缩的MS分布之间的差距。</p>
+<h1 id="4-LONGLLMLINGUA"><a href="#4-LONGLLMLINGUA" class="headerlink" title="4 LONGLLMLINGUA"></a>4 LONGLLMLINGUA</h1><p>LongLLMLingua是在LLMLingua框架的基础上发展起来的，用于在长篇背景场景中进行提示压缩。在长篇背景场景中，主要挑战是如何增强LLM对提示中与问题相关的关键信息的感知。LongLLMLingua从三个角度解决了这一挑战，并进一步应用子序列恢复策略来提高向用户提供的信息的准确性和可靠性。我们在本节详细阐述每个组件。</p>
+<h2 id="4-1-如何提高提示中的关键信息密度？"><a href="#4-1-如何提高提示中的关键信息密度？" class="headerlink" title="4.1 如何提高提示中的关键信息密度？"></a>4.1 如何提高提示中的关键信息密度？</h2><p><strong>问题感知的粗粒度压缩</strong></p>
+<p>在粗粒度压缩中，我们的目标是找到一个度量 rk 来评估每个文档 xdoc k &#x3D; {xdoc k,i }Nk i&#x3D;1 的重要性，其中 Nk 是 xdoc k 中的标记数量。我们只保留具有较高 rk 的 xdoc k 作为中间压缩结果。LLMLingua使用文档级困惑度来表示文档的重要性：</p>
+<p>$rk &#x3D; \frac{1}{Nk} \sum_{i&#x3D;1}^{Nk} p(xdoc_{k,i}) \log p(xdoc_{k,i}), \quad k \in {1, 2, \ldots, K}$ </p>
+<p>尽管保留的文档通常包含大量信息，但它们与问题 xque 无关，反而成为噪声，降低了压缩结果中的关键信息密度，并给LLM正确输出答案带来困难。如图3a所示，LLMLingua的recall@16仅达到50%，表明其在压缩过程中无法保留关键信息。</p>
+<p>在这里，基于检索的方法也是可行的。我们可以使用 xque 从 (xdoc 1 ，···，xdoc K ) 中检索出最相关的文档作为压缩结果。然而，这些方法难以区分与问题相关的细粒度语义信息。在检索过程中可能会放弃一些包含关键信息的文档。如图3a所示，基于嵌入的方法，如Sentence BERT和OpenAI Embedding，在recall@5上仅达到∼75%的准确率，这意味着LLMs进行4倍压缩的最终准确率上限仅为75%。</p>
+<p>改善压缩结果中关键信息密度的一种方法是计算在问题 xque 的条件下文档级困惑度。然而，这种方法可能不够有效，因为文档通常包含大量无关信息。即使在条件为 xque 的情况下，对整个文档计算的困惑度分数可能不足够明显，使其成为文档级压缩的不足够指标。</p>
+<p>因此，我们建议使用在不同上下文 xdoc k 条件下计算的问题 xque 的困惑度来表示它们之间的关联。我们在 xque 和 xrestrict 的连接序列之后追加了一个限制性语句 xrestrict2，以加强 xque 和 xdoc k 之间的相互关联。它可以被视为一种正则项，减轻了幻觉的影响。这可以表示为：</p>
+<p>$rk &#x3D; \frac{1}{Nc} \sum_{i} p(xque,restrict_i | xdoc_k) \log p(xque,restrict_i | xdoc_k), \quad k \in {1, 2, \ldots, K}$ </p>
+<p>其中 xque,restrict_i 是连接序列 xque 和 xrestrict 的第 i 个标记，Nc 是标记的数量。图3a表明，我们的粗级别压缩方法在保留不同数量的文档时实现了最高的recall，表明它在压缩结果中保留了来自文档 (xdoc 1 ，···，xdoc K ) 的大多数关键信息。</p>
+<p><strong>问题感知的细粒度压缩</strong></p>
+<p>在细粒度压缩中，我们评估指令 xins、问题 xque 以及粗粒度压缩后保留的 K’ 个文档 {xdoc i }K’ i&#x3D;1 中每个标记的重要性。我们结合了LLMLingua后续的迭代压缩机制，并直接计算标记困惑度以压缩 xins 和 xque。在本节中，我们研究如何使对 {xdoc k }K’ k&#x3D;1 的细粒度标记级压缩感知到问题 xque，以便压缩结果能够包含更多与问题相关的关键信息。</p>
+<p>对于对 xque 的感知的一个直接解决方案是简单地将其连接到整个上下文的开头。然而，这将导致在条件后续上下文的相关标记的困惑度降低，进一步减少它们与一般标记的区分度。在本文中，我们提出对比困惑度，即由于问题条件引起的分布偏移，以表示标记与问题之间的关联。每个 {xdoc k }K′ k&#x3D;1 中的标记 xi 的基于对比困惑度的重要性度量 si 可以表示为：</p>
+<p>$si &#x3D; \text{perplexity}(xi|x&lt;i) - \text{perplexity}(xi|xque, x&lt;i)$ </p>
+<p>图3b说明了困惑度和对比困惑度之间的差异。我们可以看到，困惑度较高的标记广泛分布在所有文档中。然而，对比困惑度较高的标记更集中在虚线左侧，对应包含问题答案的文档。这表明所提出的对比困惑度可以更好地区分与问题相关的标记，从而提高压缩结果中的关键信息密度。</p>
+<h2 id="4-2-如何减少中间信息损失？"><a href="#4-2-如何减少中间信息损失？" class="headerlink" title="4.2 如何减少中间信息损失？"></a>4.2 如何减少中间信息损失？</h2><p>如图1b所示，在长篇背景中，当相关信息出现在开头时，LLM的性能最好，如果相关信息位于中间位置，则性能显著下降。在粗粒度压缩之后，我们已经获得了一组文档 {xdoc k }K′ k&#x3D;1 以及它们的相关性分数 {rk}K′ k&#x3D;1，指示它们与问题 xque 的关联。因此，我们使用它们的相关性分数重新排序文档，以更好地利用LLMs在位置上的信息感知差异：</p>
+<p>$(xins, xdoc_1, \ldots, xdoc_{K’}, xque) \xrightarrow{rk} (xins, xdoc_{r1}, \ldots, xdoc_{rK’}, xque)$</p>
+<h2 id="4-3-如何在压缩过程中实现自适应颗粒控制？"><a href="#4-3-如何在压缩过程中实现自适应颗粒控制？" class="headerlink" title="4.3 如何在压缩过程中实现自适应颗粒控制？"></a>4.3 如何在压缩过程中实现自适应颗粒控制？</h2><p>在细粒度压缩中，LLMLingua对从粗粒度压缩中获得的所有文档应用相同的压缩比。然而，不同文档的关键信息密度是不同的。文档与问题相关性越高，我们应该分配给它的预算（即较低的压缩比）就越多。因此，我们将粗粒度压缩获得的相关性分数 {rk}K′ k&#x3D;1 用于指导细粒度压缩中的预算分配，以实现整体的自适应颗粒控制。</p>
+<p>具体而言，我们首先使用LLMLingua的预算控制器确定保留文档的初始预算 τ doc 3。在细粒度压缩过程中，我们按照LLMLingua中的迭代标记级压缩算法，但根据粗粒度压缩的重要性分数的排名索引 I(rk)（例如，0、1）动态分配压缩预算 τ doc j 给每个文档 xdoc k。在这篇论文中，我们采用线性调度程序进行自适应分配。每个标记 xi 的预算可以表示为：</p>
+<p>$\tau_i &#x3D; \tau doc_k, \quad \tau doc_k &#x3D; \max\left(\min\left((1 - 2I(rk) N_d)\delta\tau + \tau doc, 0\right), 1\right)$</p>
+<p>其中 N_d 表示文档的数量，δτ 是一个控制总体分配预算的超参数。</p>
+<h2 id="4-4-如何提高关键信息的完整性？"><a href="#4-4-如何提高关键信息的完整性？" class="headerlink" title="4.4 如何提高关键信息的完整性？"></a>4.4 如何提高关键信息的完整性？</h2><p>在细粒度标记级的压缩过程中，可能会放弃一些关键实体的标记。例如，原始提示中的时间实体“2009”可能被压缩为“209”，名字实体“Wilhelm Conrad Röntgen”可能被压缩为“Wilhelmgen”。这可能会导致基于事实的任务（例如文档问答）出现问题，其中语言模型倾向于从提示中复制信息，如图4所示，为了提高向用户提供的信息的准确性和可靠性，我们提出了一个子序列恢复方法，以从LLMs的响应中恢复原始内容。该方法依赖于原始提示、压缩提示和LLMs响应中的标记之间的子序列关系。整体流程包括：i）迭代LLMs响应中的标记 yl，并选择在压缩提示 e x 中出现的最长子字符串 e ykey,l &#x3D; {yl, yl+1, …, yr}。ii）在原始提示 x 中找到与原始提示中的表示 e ykey,l 对应的最大公共最短子序列 xi,j &#x3D; {xi, xi+1, …, xj}（可加速使用前缀树或序列自动机）。iii）用原始提示中相应的子序列 xi,j 替换LLMs响应中匹配的标记 e ykey,l。更多详细信息，请参阅Algorithm 1。</p>
+<h1 id="5-实验证明"><a href="#5-实验证明" class="headerlink" title="5 实验证明"></a>5 实验证明</h1><p>在这里，我们研究：(1) LongLLMLingua有多有效？(2) LongLLMLingua有多高效？</p>
+<p><strong>实施细节</strong></p>
+<p>在本文中，我们使用GPT-3.5-Turbo-06134和LongChat-13B-16k作为目标LLMs，均可通过OpenAI5和HuggingFace6访问。为确保稳定且可重复的结果，在所有实验中我们采用贪婪解码，并将温度设置为0。对于用于压缩的小语言模型，我们应用经过监督微调和RLHF对齐的LLaMA-2-7B-Chat7。我们使用PyTorch 1.13.1和HuggingFace Transformers实现我们的方法。我们设置超参数，遵循LLMLingua，除了在这里将用于迭代标记级压缩的段大小设置为200。附录B提供了更多详细信息。</p>
+<p><strong>数据集和评估指标</strong></p>
+<p>我们在多文档QA任务中使用NaturalQuestions，并在一般长篇背景情境中使用LongBench和ZeroSCROLLS。 (i) NaturalQuestions (Liu et al., 2023): 该基准类似于商业搜索和问答场景（如Bing Chat）中的检索增强生成设置。具体而言，每个问题在原始提示中有20个相关文档。其中一个包含正确答案，而在提示中有五个不同的地面真实文档位置设置：第1、5、10、15和20个。与Liu et al. (2023)一样，我们使用准确性作为评估指标。(ii) LongBench (Bai et al., 2023): 该基准包括六种任务类型：单文档QA、多文档QA、摘要、少量样本学习、代码完成和合成任务。我们使用涵盖16个数据集的英语部分进行评估。我们使用基准提供的度量和脚本进行评估。(iii) ZeroSCROLLS (Shaham et al., 2023): 该基准包括四种任务类型：摘要、QA、情感分类和重新排序，涵盖了10个数据集。我们使用验证集进行评估。我们使用提供的度量和脚本进行评估。</p>
+<p><strong>基线</strong></p>
+<p>在以下实验中，我们包括两组基线：(i) 基于检索的方法。我们使用五种SoTA检索方法衡量问题和提示中文档之间的关联：BM25、Gzip (Jiang et al., 2023b)、SentenceBERT (Reimers &amp; Gurevych, 2019)、OpenAI Embedding，以及在LongLLMLingua粗粒度压缩。我们丢弃与低关联的句子或段落，直到满足压缩约束，同时保持原始文档顺序不变。(ii) 基于压缩的方法。我们将我们的方法与两种用于提示压缩的最新方法进行比较，即Selective Context（Li，2023）和LLMLingua（Jiang et al., 2023a）。这两种方法都使用LLaMA-2-7B-Chat作为用于压缩的小语言模型。在LLMLingua中，采用了一种从粗到细的方法来处理压缩比例的约束：首先，在粗略级别将原始提示压缩到约束的k倍，其中k是粒度控制系数；然后，在标记级别上执行以达到总体约束。我们的方法遵循相同的粗到细逻辑以实现约束。</p>
+<p><strong>主要结果</strong></p>
+<p>表1和表3展示了不同压缩约束下各种方法的性能。有多个观察和结论：(1) 我们的LongLLMLingua在不同任务和压缩比例约束下均取得了最佳性能。与原始提示相比，我们的压缩提示可以以更少的成本获得更高的性能。例如，在NaturalQuestions中，LongLLMLingua在地面真实文档位于第10位置的情况下提高了17.1%的性能，而输入到GPT3.5-Turbo的标记数∼少了4倍。(2) Selective Context（Li，2023）和LLMLingua（Jiang et al., 2023a）等基于压缩的方法在大多数任务上表现不佳，尤其是在原始提示中存在大量不相关信息的任务。这是由于它们纯粹基于信息熵的压缩机制，在压缩结果中包含太多噪音，甚至导致性能比零射击设置更差，例如在NaturalQuestions上。(3) 检索-based方法在低压缩率下表现良好。然而，随着压缩的进行，它们的性能下降，例如，2x→4x；3000个标记→2000个标记。这可能是由于召回减少引起的。图3a是NaturalQuestions上的案例说明。(4) LongLLMLingua以及我们的粗粒度压缩度量rk都比不同任务和压缩约束下的所有其他基线更加稳健。随着压缩率的增加，例如，2x→4x，LongLLMLingua甚至取得了一点性能提升。我们主要归功于问题感知的粗到细压缩，这可以更好地找出关键信息，并在更高的压缩率下实现更高的关键信息密度。(5) 所提出的文档重新排序策略在我们的方法中以及在表1中的其他基线中都是有效的，充分证明了它的有效性。</p>
+<p><strong>消融研究</strong></p>
+<p>为了评估LongLLMLingua中不同组件的贡献，我们引入了六个它的变体进行消融研究：</p>
+<ol>
+<li>没有Question-aware Coarse-grained的我们，该变体使用LLMLingua中的信息熵计算问题文本关联rk。</li>
+<li>使用SBERT的我们，该变体使用SBERT计算rk。</li>
+<li>没有Question-aware Fine-grained的我们，该变体忽略了方程（3），仅应用LLMLingua的迭代标记级提示压缩。</li>
+<li>没有Dynamic Compression Ratio的我们，该变体在精细压缩中所有文档共享相同的压缩比率。</li>
+<li>没有Subsequence Recovery的我们，该变体去除了后处理子序列恢复策略。</li>
+<li>使用Subsequence Recovery的LLMLingua，该变体添加了后处理子序列恢复策略。</li>
+</ol>
+<p>表2展示了消融研究的结果。总体而言，去除LongLLMLingua中任何一个组件都会导致性能下降，无论地面真实答案的位置如何。这充分验证了在粗到细的压缩过程中所提出的问题感知机制、动态压缩比率和子序列恢复策略的必要性和有效性。同时，结果表明，在粗粒度压缩中使用SBERT会导致性能较差，这暗示了我们在方程（2）中的问题感知重要性度量优于SBERT。此外，我们的子序列恢复策略也能为LLMLingua带来性能提升。然而，没有我们的问题感知机制，LLMLingua的结果仍然令人不满意。详细案例请参见附录C。</p>
+<p><strong>延迟评估</strong></p>
+<p>我们在V100-32G GPU上进行测试，使用来自LongBench的提示，平均约为10K个标记，并在API调用中将响应长度设置为200个标记。在表5中，E2E表示来自提示压缩系统和黑盒API的总体延迟，而LongLLMLingua表示仅提示压缩的延迟。结果显示我们的提示压缩系统确实加速了整体推理。随着压缩率的增加，加速效果变得更加显著。值得一提的是，在API花费时间更长的场景中，LongLLMLingua实际上节省的绝对时间可能更为显著。</p>
+<h1 id="相关工作"><a href="#相关工作" class="headerlink" title="相关工作"></a>相关工作</h1><h2 id="长上下文的LLMs。"><a href="#长上下文的LLMs。" class="headerlink" title="长上下文的LLMs。"></a>长上下文的LLMs。</h2><p>最近的研究集中在扩大LLMs的上下文窗口大小上。主要的方法包括：（1）分阶段的预训练（Nijkamp等人，2023），逐渐增加上下文窗口；（2）修改（Press等人，2022）或插值位置嵌入（Chen等人，2023；Peng等人，2023；Han等人，2023）；（3）使用线性或稀疏注意机制（Ding等人，2023；Sun等人，2023）；（4）利用外部存储上下文的记忆模块（Bertsch等人，2023；Tworkowski等人，2023）。尽管这些方法解决了上下文窗口的扩展，但它们对下游任务性能的影响尚未讨论。</p>
+<h2 id="提示中的信息分布。"><a href="#提示中的信息分布。" class="headerlink" title="提示中的信息分布。"></a>提示中的信息分布。</h2><p>最近的经验实验证明，LLMs在提示中包含的信息较少时性能下降（Bai等人，2023；Li等人，2023；Shi等人，2023）。而且，提示中相关信息的位置对性能有显著影响（Wu等人，2022）。Liu等人（2023）指出，相比于提示两端的信息，LLMs更难理解位于提示中部的信息。</p>
+<p>检索方法可以分为密集或稀疏检索方法。稀疏检索方法，如BM25，基于n-gram信息确定查询和文档之间的相关性。相反，密集检索方法使用密集向量在潜在空间中评估查询和文档之间的相关性，例如SentenceBERT（Reimers＆Gurevych，2019）和OpenAI Embedding。最近，Jiang等人（2023b）提出了一种无监督的密集检索方法，利用传统的压缩算法，如gzip和k最近邻。</p>
+<h2 id="提示压缩方法"><a href="#提示压缩方法" class="headerlink" title="提示压缩方法"></a>提示压缩方法</h2><p>可以分为三类主要类别：（1）标记修剪（Goyal等人，2020；Kim＆Cho，2021；Modarressi等人，2022）和标记合并（Bolya等人，2023），需要在推理过程中进行模型微调或中间结果，并已用于BERT规模的模型。 （2）GIST（Mu等人，2023）、AutoCompressor（Chevalier等人，2023）和ICAE（Ge等人，2023）等软提示调整方法，需要对LLMs的参数进行微调，使它们适用于特定领域但不直接适用于黑盒LLMs。 （3）基于信息熵的方法，如Selective Context（Li，2023）和LLMLingua（Jiang等人，2023a），使用小型语言模型计算原始提示中每个标记的自信息或困惑度，然后删除困惑度较低的标记。</p>
+<h1 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h1><p>我们提出了LongLLMLingua来解决LLMs在长上下文场景中面临的三个挑战，即更高的计算&#x2F;财务成本、更长的系统延迟以及性能下降。我们从高效提示压缩的角度发展了LongLLMLingua，从而降低了计算&#x2F;财务成本和系统延迟。我们进一步设计了四个组件，即问题感知的粗到细的压缩方法、文档重新排序机制、动态压缩比率和后压缩子序列恢复策略，以提高LLMs对关键信息的感知。通过这些组件，LongLLMLingua展现了卓越的性能。在一个多文档QA基准和两个长上下文基准上的实验证明，LongLLMLingua压缩的提示可以在减少API推理的计算&#x2F;财务成本和端到端系统延迟的同时获得比原始提示更高的性能。</p>
+<h1 id="以下来自原作者的知乎内容"><a href="#以下来自原作者的知乎内容" class="headerlink" title="以下来自原作者的知乎内容"></a>以下来自原作者的知乎内容</h1><h3 id="News"><a href="#News" class="headerlink" title="News"></a><strong>News</strong></h3><p>我们制作了一个<a href="https://link.zhihu.com/?target=https://llmlingua.com/">Project Page</a>，来展示现实场景中压缩的cases，包括 RAG、 Online Meeting、CoT 和Code；</p>
+<p>LongLLMLingua已经整合到了<a href="https://link.zhihu.com/?target=https://github.com/run-llama/llama_index/blob/main/llama_index/indices/postprocessor/longllmlingua.py">LlamaIndex Pipeline</a>中，这是一个广泛使用的RAG框架。</p>
+<p><strong>Tl;DR:</strong></p>
+<p>LLMLingua, 利用经过Alignment的well-trained的小的语言模型，例如GPT2-small或者LLaMA-7B，来检测和剔除prompt中的不重要token，将其转化为一种人类很难理解但是LLMs能很好理解的形势。并且这种被压缩的prompt可以直接用在black-box LLMs中，实现最高20倍的压缩，且几乎不影响下游任务性能，尤其是LLMs特有的能力，例如ICL，Reasoning等。</p>
+<p><a href="https://link.zhihu.com/?target=https://arxiv.org/abs/2310.05736">LLMLingua: Compressing Prompts for Accelerated Inference of Large Language Models</a> (EMNLP 2023).</p>
+<p><em>Huiqiang Jiang, Qianhui Wu, Chin-Yew Lin, Yuqing Yang and Lili Qiu</em></p>
+<p>LongLLMLingua, 利用Prompt 压缩增强LLMs在Long Context Scenarios下感知prompt中关键信息的能力，能够有效缓解Lost in the Middle, 十分适合RAG场景中使用。实现每1k个样本节省最高$28.5(GPT-3.5-Turbo, 4的话这个值还能x10)，并且还能提升LLMs的性能。</p>
+<p><a href="https://link.zhihu.com/?target=https://arxiv.org/abs/2310.06839">LongLLMLingua: Accelerating and Enhancing LLMs in Long Context Scenarios via Prompt Compression</a> (Under Review).</p>
+<p><em>Huiqiang Jiang, Qianhui Wu, Xufang Luo, Dongsheng Li, Chin-Yew Lin, Yuqing Yang and Lili Qiu</em></p>
+<p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://pic4.zhimg.com/80/v2-d69c905787de5eb24a4cc21535855467_1440w.jpg" alt="https://pic4.zhimg.com/80/v2-d69c905787de5eb24a4cc21535855467_1440w.jpg"></p>
+<blockquote>
+<p>以下内容仅代表个人观点，不代表我所在公司或者团队的观点。</p>
+</blockquote>
+<p>既然是博客，我们就换一种方式从high level角度讲一下我们对这个工作的理解。</p>
+<p>首先，感谢</p>
+<p><a target="_blank" rel="noopener" href="https://www.zhihu.com/people/e9dda8c05a9a9dfbfa117b3646ed7233">@九号</a></p>
+<p>之前的分享，启发我们在这个topic上面做的一些工作。</p>
+<p>标题以及LLMLingua的名字其实表达的是我们的一个goal，通过某种方式，构造一种专属于LLMs的语言。</p>
+<p>这种语言很有可能人类很难理解，但是LLMs可以很好的理解，从而可以在这种语言上面做一些有趣的事情。</p>
+<p>比如说用更少的比特数传递更多的信息，甚至可以传递给LLMs更高效的信息，从而提升LLMs的性能。</p>
+<p>而我们选择了从Prompt压缩这条路来接近这个goal。</p>
+<p>而且通过Prompt压缩来做这件事非常Make Sense，其一是因为Natrual Language本身是冗余的，尤其是口语下，第二是ChatGPT实际上能很好的理解某种被压缩的文字[1].</p>
+<p>如果从LLMs is Compressor 角度来想这个问题，会变得更顺理成章。即prompt中更高置信的部分token完全不需要交给LLMs，他也能从上下文中猜测出来。</p>
+<p>这也就是我们这系列工作的一个核心出发点。</p>
+<p>而压缩带来的Inference 加速，API Cost节省都是实现这个goal的一些副产物，只是这些副产物已经非常吸引人了。</p>
+<p>而在LongLLMLingua这篇工作中，我们讨论了Long Context Scenoias 下prompt低信息密度的现象，并进一步利用了信息密度及位置与LLMs performance的关系，提出了一种Question-Aware 的方法来增强LLMs 感知关键信息的能力。</p>
+<p>接下来我会分别介绍这两个工作。</p>
+<h3 id="LLMLingua"><a href="#LLMLingua" class="headerlink" title="LLMLingua"></a><strong>LLMLingua</strong></h3><p>我个人是非常喜欢这篇工作，我们在这篇中做了很多细致的分析，得到了一些很有趣的发现。</p>
+<p>Paper里我们试图去回答以下几个问题，不过可能有些有趣的发现因为在较后的位置，甚至是附录，可能会被大家忽略。</p>
+<ol>
+<li>我们应该如何去设计一个prompt 压缩算法，从而能够最大化的压缩prompt，同时又不影响LLMs的性能。</li>
+<li>这种被压缩的prompt能直接用在下游任务中吗？</li>
+<li>它的泛化性怎么样？</li>
+<li>有什么证据能证明Black-box LLMs能理解这种被压缩的prompt？</li>
+<li>这种压缩方法的有上界吗？</li>
+<li>为什么不用GPT-X来做这件事？</li>
+</ol>
+<p>第一是如何去系统的设计一个Prompt Compression方法，我们的Goal是能直接用，不需要对LLMs额外的训练，而且能平衡语言完整性和压缩率之间的关系。</p>
+<p>我们想到了OoD里面基于PPL的一系列方法，OoD的信息正好是Prompt给到LLMs的有效信息。</p>
+<p>这条路会有别于Token Pruning&#x2F;Merge, 亦或是Soft prompt based method, 从而有希望在不对LLMs进行额外训练的情况下，直接将被压缩的prompt用在black-box LLMs上。</p>
+<p>但仅仅基于ppl就够了么？我们发现</p>
+<ol>
+<li>prompt中不同成分对于压缩的敏感程度是不同的，例如System prompt，question prompt的敏感度更高;</li>
+<li>高压缩率下，过度影响语言完整性，会让LLMs难以理解prompt中的信息；</li>
+<li>部分Context 中的信息是冗余重复的，尤其是ICL场景下;</li>
+<li>PPL 分布会随着压缩的发生而发生改变；</li>
+<li>需要有某种方式让小模型aware Black-box LLMs；</li>
+</ol>
+<p>这也就是我们在LLMLingua中设计了Budget Controller，Iterative Token-level Prompt Compression, Alignment 三个module的原因，具体细节可见paper。</p>
+<p>第二个问题也是所有Efficient Method in LLMs都会遇到的问题，不过之前大部分工作也只是在一些传统的Zero-shot QA或者Language Model task上进行测试，为了进一步说明这种被压缩prompt对于下游任务的影响，我们专门从LLMs特有的一些能力出发，评测了ICL，Reasoning，Summarization，和Conversation这些任务。结果显示我们在GSM8K上可以做到20x的压缩比，并且几乎不影响performance。在Summarization和Conversatio的结果也比baseline要优。</p>
+<p>顺带回答第六个问题，其实可以看见Generation-based的方法实际上不能很好的保留精心设计的prompt中的关键信息，它会忽略推理细节，甚至生成一个完全不相关的examples，即使是GPT-4 也很难完成压缩prompt这件事。</p>
+<p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://pic1.zhimg.com/80/v2-84399dd6c4184b9c756fd2b5463326d8_1440w.webp" alt="https://pic1.zhimg.com/80/v2-84399dd6c4184b9c756fd2b5463326d8_1440w.webp"></p>
+<p>为了证明LLMLingua的泛化性，我们测试了不同small language model 和black-box LLMs，结果显示由于我们的设计GPT2 small size的模型也能取得不错的结果。此外，被压缩的prompt也能在Cluade上取得不错的结果，这也说明了LLMLingua的泛化性。</p>
+<p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://pic4.zhimg.com/80/v2-98f9e151def95780ab62029c0d13b913_1440w.webp" alt="https://pic4.zhimg.com/80/v2-98f9e151def95780ab62029c0d13b913_1440w.webp"></p>
+<p>我们还做了一个有趣的实验，让GPT-4 去帮助回复被压缩之后的prompt，惊奇的发现，居然可以从那些人类很难理解的文本中几乎完全的恢复出所有细节，如下图完全恢复出了9-steps CoT。不过不同压缩程度的prompt能恢复的细节也不同，这也说明了我们的设计是合理的。</p>
+<p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://pic2.zhimg.com/80/v2-d8920de034e53d5b9852243112ca0121_1440w.webp" alt="https://pic2.zhimg.com/80/v2-d8920de034e53d5b9852243112ca0121_1440w.webp"></p>
+<p>我们还发现压缩Prompt不仅能节省Input tokens，还能进一步节省20%-30% output tokens.</p>
+<p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://pic3.zhimg.com/80/v2-954392b282520c4535a87bfb7c49f122_1440w.webp" alt="https://pic3.zhimg.com/80/v2-954392b282520c4535a87bfb7c49f122_1440w.webp"></p>
+<p>我们也尝试使用了更多的压缩率，结果显示即使是利用了LLMLingua，在特别大的压缩率下仍然会出现特别剧烈的performance drop。</p>
+<p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://pic1.zhimg.com/80/v2-2c338f0652ac29814dc6d22e200388a8_1440w.webp" alt="https://pic1.zhimg.com/80/v2-2c338f0652ac29814dc6d22e200388a8_1440w.webp"></p>
+<p>除此之外，我们还将LLMLingua apply到KV-Cache Compression的场景，也能取得不错的performance。</p>
+<h3 id="LongLLMLingua"><a href="#LongLLMLingua" class="headerlink" title="LongLLMLingua"></a><strong>LongLLMLingua</strong></h3><p>LongLLMLingua 出发点和LLMLingua就不太一样了，不只是想要压缩prompt保证少掉精度，而是想要在Long Context Scenarios下，通过提升prompt中的信息密度，从而提升LLMs的性能。</p>
+<p>这个方法特别适合现在普遍使用的Retrieval-Augmented Generation Method。</p>
+<ol>
+<li>虽然现在有很多工作让模型能够处理更长的context，但是Context Windows 的增长反而会影响很多下游任务的performance[2];</li>
+<li>其次，之前的工作表面prompt中noise的增多，会影响LLMs的性能;</li>
+<li>Lost in the middle 中分析了prompt 中关键信息的位置对于LLMs的性能的影响;</li>
+<li>Long Context Prompt 会带来更多的API Cost和latency;</li>
+</ol>
+<p>综合以上几点，我们觉得Long Context Scenorias 中信息密度是一个非常关键的问题，Prompt Compression可能是其中的一个解决方案。</p>
+<p>但是LLMLingua或者其他Compression-based 的method 并不是一个合适的解决方案，原因是Long Context 中关键信息的密度很低，很有可能prompt本身的信息熵很高，但是不相关，这样压缩prompt反而会引入更多的噪声，从而影响performance。</p>
+<p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://pic3.zhimg.com/80/v2-a04e2dbbf34d772422697d93d5a9165a_1440w.webp" alt="https://pic3.zhimg.com/80/v2-a04e2dbbf34d772422697d93d5a9165a_1440w.webp"></p>
+<p>我们的解决方案是，通过设计了Question-Aware Coarse-fine的方法，让压缩算法能够感知到因为question带来的关键信息分布的变化。</p>
+<p>具体               可以看到如上右图，在4x压缩率，我们的方法能够略微超过ground truth 位于prompt 开头的结果，从而用更少的API Cost取得更好的结果，缓解lost in the middle 带来的问题。</p>
+<p>我们还设计了dynamic compression ratio 来串联两个粒度方法的信息，设计了一个基于子序列的后处理recovery来恢复被压缩的重要信息。</p>
+<p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://pic4.zhimg.com/80/v2-b474736db3636d3800c77b9b23327777_1440w.webp" alt="https://pic4.zhimg.com/80/v2-b474736db3636d3800c77b9b23327777_1440w.webp"></p>
+<p>为了证明我们方法的有效性，我们在Multi-Document QA和两个Long Context Benchmark 中进行了细致的测试。</p>
+<p>其中Multi-Document QA中选用的dataset 更贴合RAG实际场景，k个document均为粗排召回与question十分相关的document。</p>
+<p>可以看到我们的方法通过提高prompt中的信息密度能够有效的提升performance，缓解lost in the middle现象，尤其是经过reorder之后。</p>
+<p>其次，即使单独使用LongLLMLingua中Coarse-level Question-aware的方法，也能取得不错的效果，这也说明了我们的设计有效性。</p>
+<p>我们还测试了Long Context Benchmark中的不同tasks，包括Single-Document, Multi-Document, Summarization, Few-shot Learning, Synthetic和Code补全。</p>
+<p>结果显示我们的方法在Multi-Document QA， Synthetic等任务上提升明显，能够在6x压缩率下获得更好的performance。</p>
+<p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://pic4.zhimg.com/80/v2-447f347757331d27ba58290e020b267b_1440w.webp" alt="https://pic4.zhimg.com/80/v2-447f347757331d27ba58290e020b267b_1440w.webp"></p>
+<p>除此之外，我们还测试了端到端Latency，和API Cost节省情况。</p>
+<p>结果显示，LongLLMLingua 虽然会比LLMLingua慢，但仍然能拿到实际的端到端加速。</p>
+<p>API Cost方面，Long Context Scenorias 下能够节省更多的Cost，最多每1k个样本节省$28.5。</p>
+<p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://pic4.zhimg.com/80/v2-d5b3cdd89eb553e853476c6949ff288f_1440w.webp" alt="https://pic4.zhimg.com/80/v2-d5b3cdd89eb553e853476c6949ff288f_1440w.webp"></p>
+<h3 id="FQA"><a href="#FQA" class="headerlink" title="FQA"></a><strong>FQA</strong></h3><ol>
+<li>不同LLMs之间Tokenizer 不同会影响压缩效果吗？</li>
+</ol>
+<p>实际上我们用的小模型和大模型之间的Tokenizer完全不同，但是并不影响大模型对compressed prompt的理解。Token-level Compression是为了进一步感知LLMs中对于prompt的token的重要分布。</p>
+<ol start="2">
+<li>你看过那么多压缩的example，你觉得人能总结出某种语法吗？</li>
+</ol>
+<p>我觉得十分困难，Natural Language本身有一定的语法规则，但是LLMLingua所蕴含的是语法+world Knowledge，这种Knowledge是很难由某些特定人完全掌握的。</p>
+<ol start="3">
+<li>为什么LLMs能理解Compressed Prompt？</li>
+</ol>
+<p>我们现在的理解是因为world Knowledge是相同的，不同的LLMs其实都是对于同一个Knowledge Space的逼近，不同LLMs能够逼近的程度不同（可以看成是LLMs的压缩率）。</p>
+<ol start="4">
+<li>传统压缩算法能做Prompt Compression吗？</li>
+</ol>
+<p>实际上我们觉得直接做Prompt Compression比较困难，因为压缩完的prompt很有可能token数量不会减少，而且LLMs并不会很好的理解这种格式的信息。但是可以将传统压缩算法看做是某种Retrieval-based Method 来做Coarse-level的prompt compression。</p>
+<ol start="5">
+<li>能利用不同语言信息熵不同的特点，将prompt转换为信息熵高的语言再压缩吗？</li>
+</ol>
+<p>理论上是可以的，不同语言中的信息熵差异非常大。但是这取决于translation System能够保留住原有信息，且black-box LLMs对于对应language能够有与源语言相似的performance。</p>
+<p>在完成LLMLingua之后，由于*CL的匿名政策，让我们有了充足的时间去思考。在这里感谢公司内部的一些同事，对我们的工作提出了很多有意义的问题，这些问题也帮助我们更好的理解我们的工作，以及未来的方向。</p>
+
+<div class="article-footer fs14">
+    <section id="license">
+      <div class="header"><span>License</span></div>
+      <div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
+</div>
+    </section>
+    </div>
+</article>
+<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">Newer</div><a href="/2024/04/19/%E5%80%A6%E6%80%A0%E7%A4%BE%E4%BC%9A/">倦怠社会</a></div><div class="item" id="next"><div class="note">Older</div><a href="/2023/10/29/SCOTT%20Self-Consistent%20Chain-of-Thought%20Distillation/">SCOTT_ Self-Consistent Chain-of-Thought Distillation</a></div></section></div>
+
+
+
+
+
+
+<footer class="page-footer footnote"><hr><div class="text"><p>本站由 <a href="/">Hannah</a> 使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0">Stellar 1.27.0</a> 主题创建。<br>本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
+</div></footer>
+<div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right">
+<div class="widgets">
+
+
+
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">On This Page</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#LongLLMLingua-ACCELERATING-AND-ENHANCING-LLMS-IN-LONG-CONTEXT-SCENARIOS-VIA-PROMPT-COMPRESSION"><span class="toc-text">LongLLMLingua: ACCELERATING AND ENHANCING LLMS IN LONG CONTEXT SCENARIOS VIA PROMPT COMPRESSION</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E5%BC%95%E8%A8%80"><span class="toc-text">1 引言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E9%97%AE%E9%A2%98%E9%98%90%E8%BF%B0"><span class="toc-text">2 问题阐述</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-%E9%A2%84%E5%A4%87%E7%9F%A5%E8%AF%86%EF%BC%9ALLMLINGUA"><span class="toc-text">3 预备知识：LLMLINGUA</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-LONGLLMLINGUA"><span class="toc-text">4 LONGLLMLINGUA</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-%E5%A6%82%E4%BD%95%E6%8F%90%E9%AB%98%E6%8F%90%E7%A4%BA%E4%B8%AD%E7%9A%84%E5%85%B3%E9%94%AE%E4%BF%A1%E6%81%AF%E5%AF%86%E5%BA%A6%EF%BC%9F"><span class="toc-text">4.1 如何提高提示中的关键信息密度？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-%E5%A6%82%E4%BD%95%E5%87%8F%E5%B0%91%E4%B8%AD%E9%97%B4%E4%BF%A1%E6%81%AF%E6%8D%9F%E5%A4%B1%EF%BC%9F"><span class="toc-text">4.2 如何减少中间信息损失？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3-%E5%A6%82%E4%BD%95%E5%9C%A8%E5%8E%8B%E7%BC%A9%E8%BF%87%E7%A8%8B%E4%B8%AD%E5%AE%9E%E7%8E%B0%E8%87%AA%E9%80%82%E5%BA%94%E9%A2%97%E7%B2%92%E6%8E%A7%E5%88%B6%EF%BC%9F"><span class="toc-text">4.3 如何在压缩过程中实现自适应颗粒控制？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-4-%E5%A6%82%E4%BD%95%E6%8F%90%E9%AB%98%E5%85%B3%E9%94%AE%E4%BF%A1%E6%81%AF%E7%9A%84%E5%AE%8C%E6%95%B4%E6%80%A7%EF%BC%9F"><span class="toc-text">4.4 如何提高关键信息的完整性？</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-%E5%AE%9E%E9%AA%8C%E8%AF%81%E6%98%8E"><span class="toc-text">5 实验证明</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C"><span class="toc-text">相关工作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%95%BF%E4%B8%8A%E4%B8%8B%E6%96%87%E7%9A%84LLMs%E3%80%82"><span class="toc-text">长上下文的LLMs。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%90%E7%A4%BA%E4%B8%AD%E7%9A%84%E4%BF%A1%E6%81%AF%E5%88%86%E5%B8%83%E3%80%82"><span class="toc-text">提示中的信息分布。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%90%E7%A4%BA%E5%8E%8B%E7%BC%A9%E6%96%B9%E6%B3%95"><span class="toc-text">提示压缩方法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA"><span class="toc-text">结论</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%A5%E4%B8%8B%E6%9D%A5%E8%87%AA%E5%8E%9F%E4%BD%9C%E8%80%85%E7%9A%84%E7%9F%A5%E4%B9%8E%E5%86%85%E5%AE%B9"><span class="toc-text">以下来自原作者的知乎内容</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#News"><span class="toc-text">News</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LLMLingua"><span class="toc-text">LLMLingua</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LongLLMLingua"><span class="toc-text">LongLLMLingua</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#FQA"><span class="toc-text">FQA</span></a></li></ol></li></ol></li></ol></div><div class="widget-footer">
+
+<a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/></g></svg><span>Scroll to Top</span></a><a class="buttom" onclick="util.scrollComment()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M10.46 1.25h3.08c1.603 0 2.86 0 3.864.095c1.023.098 1.861.3 2.6.752a5.75 5.75 0 0 1 1.899 1.899c.452.738.654 1.577.752 2.6c.095 1.004.095 2.261.095 3.865v1.067c0 1.141 0 2.036-.05 2.759c-.05.735-.153 1.347-.388 1.913a5.75 5.75 0 0 1-3.112 3.112c-.805.334-1.721.408-2.977.43a10.81 10.81 0 0 0-.929.036c-.198.022-.275.054-.32.08c-.047.028-.112.078-.224.232c-.121.166-.258.396-.476.764l-.542.916c-.773 1.307-2.69 1.307-3.464 0l-.542-.916a10.605 10.605 0 0 0-.476-.764c-.112-.154-.177-.204-.224-.232c-.045-.026-.122-.058-.32-.08c-.212-.023-.49-.03-.93-.037c-1.255-.021-2.171-.095-2.976-.429A5.75 5.75 0 0 1 1.688 16.2c-.235-.566-.338-1.178-.389-1.913c-.049-.723-.049-1.618-.049-2.76v-1.066c0-1.604 0-2.86.095-3.865c.098-1.023.3-1.862.752-2.6a5.75 5.75 0 0 1 1.899-1.899c.738-.452 1.577-.654 2.6-.752C7.6 1.25 8.857 1.25 10.461 1.25M6.739 2.839c-.914.087-1.495.253-1.959.537A4.25 4.25 0 0 0 3.376 4.78c-.284.464-.45 1.045-.537 1.96c-.088.924-.089 2.11-.089 3.761v1c0 1.175 0 2.019.046 2.685c.045.659.131 1.089.278 1.441a4.25 4.25 0 0 0 2.3 2.3c.515.214 1.173.294 2.429.316h.031c.398.007.747.013 1.037.045c.311.035.616.104.909.274c.29.17.5.395.682.645c.169.232.342.525.538.856l.559.944a.52.52 0 0 0 .882 0l.559-.944c.196-.331.37-.624.538-.856c.182-.25.392-.476.682-.645c.293-.17.598-.24.909-.274c.29-.032.639-.038 1.037-.045h.032c1.255-.022 1.913-.102 2.428-.316a4.25 4.25 0 0 0 2.3-2.3c.147-.352.233-.782.278-1.441c.046-.666.046-1.51.046-2.685v-1c0-1.651 0-2.837-.089-3.762c-.087-.914-.253-1.495-.537-1.959a4.25 4.25 0 0 0-1.403-1.403c-.464-.284-1.045-.45-1.96-.537c-.924-.088-2.11-.089-3.761-.089h-3c-1.651 0-2.837 0-3.762.089" clip-rule="evenodd"/><path fill="currentColor" d="M9 11a1 1 0 1 1-2 0a1 1 0 0 1 2 0m4 0a1 1 0 1 1-2 0a1 1 0 0 1 2 0m4 0a1 1 0 1 1-2 0a1 1 0 0 1 2 0"/></svg><span>Join Discussion</span></a></div></widget>
+</div></aside><div class='float-panel blur'>
+  <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
+  </button>
+  <button type='button' style='display:none' class='mobile-only leftbar-toggle mobile' onclick='sidebar.leftbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 11c0-3.771 0-5.657 1.172-6.828C4.343 3 6.229 3 10 3h4c3.771 0 5.657 0 6.828 1.172C22 5.343 22 7.229 22 11v2c0 3.771 0 5.657-1.172 6.828C19.657 21 17.771 21 14 21h-4c-3.771 0-5.657 0-6.828-1.172C2 18.657 2 16.771 2 13z"/><path id="sep" stroke-linecap="round" d="M5.5 10h6m-5 4h4m4.5 7V3"/></g></svg>
+  </button>
+</div>
+</div><div class="scripts">
+<script type="text/javascript">
+  const ctx = {
+    date_suffix: {
+      just: `Just`,
+      min: `minutes ago`,
+      hour: `hours ago`,
+      day: `days ago`,
+    },
+    root : `/`,
+  };
+
+  // required plugins (only load if needs)
+  if (`local_search`) {
+    ctx.search = {};
+    ctx.search.service = `local_search`;
+    if (ctx.search.service == 'local_search') {
+      let service_obj = Object.assign({}, `{"field":"all","path":"/search.json","content":true,"sort":"-date"}`);
+      ctx.search[ctx.search.service] = service_obj;
+    }
+  }
+  const def = {
+    avatar: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/3442075.svg`,
+    cover: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg`,
+  };
+  const deps = {
+    jquery: `https://cdn.bootcdn.net/ajax/libs/jquery/3.7.1/jquery.min.js`,
+    marked: `https://cdn.bootcdn.net/ajax/libs/marked/4.0.18/marked.min.js`
+  }
+  
+
+</script>
+
+<script type="text/javascript">
+  const utils = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    css: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    js: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      if (src.startsWith('/')){
+        src = ctx.root + src.substring(1);
+      }
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    jq: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        utils.js(deps.jquery).then(fn)
+      } else {
+        fn()
+      }
+    },
+    
+    onLoading: (el) => {
+      if (el) {
+        $(el).append('<div class="loading-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" stroke-opacity=".3" d="M12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="1.3s" values="60;0"/></path><path stroke-dasharray="15" stroke-dashoffset="15" d="M12 3C16.9706 3 21 7.02944 21 12"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.3s" values="15;0"/><animateTransform attributeName="transform" dur="1.5s" repeatCount="indefinite" type="rotate" values="0 12 12;360 12 12"/></path></g></svg></div>');
+      }
+    },
+    onLoadSuccess: (el) => {
+      if (el) {
+        $(el).find('.loading-wrap').remove();
+      }
+    },
+    onLoadFailure: (el) => {
+      if (el) {
+        $(el).find('.loading-wrap svg').remove();
+        $(el).find('.loading-wrap').append('<svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" d="M12 3L21 20H3L12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.5s" values="60;0"/></path><path stroke-dasharray="6" stroke-dashoffset="6" d="M12 10V14"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.6s" dur="0.2s" values="6;0"/></path></g><circle cx="12" cy="17" r="1" fill="currentColor" fill-opacity="0"><animate fill="freeze" attributeName="fill-opacity" begin="0.8s" dur="0.4s" values="0;1"/></circle></svg>');
+        $(el).find('.loading-wrap').addClass('error');
+      }
+    },
+    request: (el, url, callback, onFailure) => {
+      let retryTimes = 3;
+      utils.onLoading(el);
+      function req() {
+        return new Promise((resolve, reject) => {
+          let status = 0; // 0 等待 1 完成 2 超时
+          let timer = setTimeout(() => {
+            if (status === 0) {
+              status = 2;
+              timer = null;
+              reject('请求超时');
+              if (retryTimes == 0) {
+                onFailure();
+              }
+            }
+          }, 5000);
+          fetch(url).then(function(response) {
+            if (status !== 2) {
+              clearTimeout(timer);
+              resolve(response);
+              timer = null;
+              status = 1;
+            }
+            if (response.ok) {
+              return response.json();
+            }
+            throw new Error('Network response was not ok.');
+          }).then(function(data) {
+            retryTimes = 0;
+            utils.onLoadSuccess(el);
+            callback(data);
+          }).catch(function(error) {
+            if (retryTimes > 0) {
+              retryTimes -= 1;
+              setTimeout(() => {
+                req();
+              }, 5000);
+            } else {
+              utils.onLoadFailure(el);
+              onFailure();
+            }
+          });
+        });
+      }
+      req();
+    },
+  };
+</script>
+
+<script>
+  const sidebar = {
+    leftbar: () => {
+      if (l_body) {
+        l_body.toggleAttribute('leftbar');
+        l_body.removeAttribute('rightbar');
+      }
+    },
+    rightbar: () => {
+      if (l_body) {
+        l_body.toggleAttribute('rightbar');
+        l_body.removeAttribute('leftbar');
+      }
+    },
+    dismiss: () => {
+      if (l_body) {
+        l_body.removeAttribute('leftbar');
+        l_body.removeAttribute('rightbar');
+      }
+    },
+    toggleTOC: () => {
+      document.querySelector('#data-toc').classList.toggle('collapse');
+    }
+  }
+</script>
+
+<!-- required -->
+<script src="/js/main.js?v=1.27.0" async></script>
+
+<!-- optional -->
+
+
+
+<script defer>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    ctx.services = Object.assign({}, JSON.parse(`{"mdrender":{"js":"/js/services/mdrender.js"},"siteinfo":{"js":"/js/services/siteinfo.js","api":null},"ghinfo":{"js":"/js/services/ghinfo.js"},"sites":{"js":"/js/services/sites.js"},"friends":{"js":"/js/services/friends.js"},"timeline":{"js":"/js/services/timeline.js"},"fcircle":{"js":"/js/services/fcircle.js"},"weibo":{"js":"/js/services/weibo.js"},"memos":{"js":"/js/services/memos.js"}}`));
+    for (let id of Object.keys(ctx.services)) {
+      const js = ctx.services[id].js;
+      if (id == 'siteinfo') {
+        ctx.cardlinks = document.querySelectorAll('a.link-card[cardlink]');
+        if (ctx.cardlinks?.length > 0) {
+          utils.js(js, { defer: true }).then(function () {
+            setCardLink(ctx.cardlinks);
+          });
+        }
+      } else {
+        const els = document.getElementsByClassName(`ds-${id}`);
+        if (els?.length > 0) {
+          utils.jq(() => {
+            if (id == 'timeline' || 'memos' || 'marked') {
+              utils.js(deps.marked).then(function () {
+                utils.js(js, { defer: true });
+              });
+            } else {
+              utils.js(js, { defer: true });
+            }
+          });
+        }
+      }
+    }
+  });
+</script>
+
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    ctx.search = {
+      path: `/search.json`,
+    }
+    utils.js('/js/search/local-search.js', { defer: true });
+  });
+</script><script>
+  window.FPConfig = {
+    delay: 0,
+    ignoreKeywords: [],
+    maxRPS: 5,
+    hoverDelay: 25
+  };
+</script>
+<script defer src="https://cdn.bootcdn.net/ajax/libs/flying-pages/2.1.2/flying-pages.min.js"></script><script defer src="https://cdn.bootcdn.net/ajax/libs/vanilla-lazyload/17.8.4/lazyload.min.js"></script>
+<script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazy",
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    window.lazyLoadInstance?.update();
+  });
+</script><script>
+  ctx.fancybox = {
+    selector: `.timenode p>img`,
+    css: `https://cdn.bootcdn.net/ajax/libs/fancyapps-ui/5.0.22/fancybox/fancybox.min.css`,
+    js: `https://cdn.bootcdn.net/ajax/libs/fancyapps-ui/5.0.22/fancybox/fancybox.umd.min.js`
+  };
+  var selector = '[data-fancybox]:not(.error)';
+  if (ctx.fancybox.selector) {
+    selector += `, ${ctx.fancybox.selector}`
+  }
+  var needFancybox = document.querySelectorAll(selector).length !== 0;
+  if (!needFancybox) {
+    const els = document.getElementsByClassName('ds-memos');
+    if (els != undefined && els.length > 0) {
+      needFancybox = true;
+    }
+  }
+  if (needFancybox) {
+    utils.css(ctx.fancybox.css);
+    utils.js(ctx.fancybox.js, { defer: true }).then(function () {
+      Fancybox.bind(selector, {
+        hideScrollbar: false,
+        Thumbs: {
+          autoStart: false,
+        },
+        caption: (fancybox, slide) => {
+          return slide.triggerEl.alt || null
+        }
+      });
+    })
+  }
+</script><script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    const swiper_api = document.getElementById('swiper-api');
+    if (swiper_api != undefined) {
+      utils.css(`https://unpkg.com/swiper@10.3.1/swiper-bundle.min.css`);
+      utils.js(`https://unpkg.com/swiper@10.3.1/swiper-bundle.min.js`, { defer: true }).then(function () {
+        const effect = swiper_api.getAttribute('effect') || '';
+        var swiper = new Swiper('.swiper#swiper-api', {
+          slidesPerView: 'auto',
+          spaceBetween: 8,
+          centeredSlides: true,
+          effect: effect,
+          rewind: true,
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+        });
+      })
+    }
+  });
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    window.codeElements = document.querySelectorAll('.code');
+    if (window.codeElements.length > 0) {
+      ctx.copycode = {
+        default_text: `Copy`,
+        success_text: `Copied`,
+        toast: `复制成功`,
+      };
+      utils.js('/js/plugins/copycode.js');
+    }
+  });
+</script>
+
+
+<!-- inject -->
+
+</div></body></html>
